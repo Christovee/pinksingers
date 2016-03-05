@@ -9,7 +9,7 @@
     <artifactId>pinksingers</artifactId>
 
     <properties>
-        <app.id>cviveash-test</app.id>
+        <app.id>pink-singers</app.id>
         <app.version>1</app.version>
         <appengine.version>1.9.32</appengine.version>
         <gcloud.plugin.version>2.0.9.74.v20150814</gcloud.plugin.version>
