@@ -15,6 +15,7 @@ import java.util.Date;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 
 import com.googlecode.objectify.ObjectifyService;
@@ -32,7 +33,12 @@ public class SaveMemberServlet extends HttpServlet {
 	
 	ObjectifyService.ofy().save().entity(member).now();
 	
-	resp.sendRedirect("/memberList.jsp"); 
+	Long memberId = member.getMemberId();
+	
+	req.setAttribute("memberId", memberId);
+	req.setAttribute("status", "saved");
+	RequestDispatcher rd = getServletContext().getRequestDispatcher("/loadMember");
+	rd.forward(req, resp); 
 	}
 
 }

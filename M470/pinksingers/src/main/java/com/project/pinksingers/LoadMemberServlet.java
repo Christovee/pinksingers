@@ -27,27 +27,38 @@ public class LoadMemberServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException 
 	{
-		//Check querystring isn't empty
+		//Check if parameter is null isn't empty
 		if(req.getParameter("memberId") == null)
 		{
-			resp.sendRedirect("../index"); 
+			resp.sendRedirect("../index.jsp"); 
+		}else{
+			Long memberId = Long.valueOf(req.getParameter("memberId"));
+		
+			Member member = ObjectifyService.ofy().load().type(Member.class).id(memberId).now();
+		
+			req.setAttribute("member", member);
+		
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/member.jsp");
+			rd.forward(req, resp); 
 		}
-		
-		Long memberId = Long.valueOf(req.getParameter("memberId"));
-		
+	}
+	
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException 
+	{
+		Long memberId = null;
+				
+		if(req.getAttribute("memberId") == null)
+		{
+			memberId = Long.valueOf(req.getParameter("memberId"));
+		}else{
+			memberId = (Long)req.getAttribute("memberId");
+		}
+				
+				
 		Member member = ObjectifyService.ofy().load().type(Member.class).id(memberId).now();
-		
-		/*
-		req.setAttribute("name", member.getName());
-		//Blob photo;
-		req.setAttribute("email", member.getEmail());
-		req.setAttribute("funFact", member.getFunFact());
-		req.setAttribute("section", member.getSection());
-		req.setAttribute("subSection", member.getSubSection());
-		req.setAttribute(arg0, arg1);*/
-		
+				
 		req.setAttribute("member", member);
-		
+				
 		RequestDispatcher rd = getServletContext().getRequestDispatcher("/member.jsp");
 		rd.forward(req, resp); 
 	}
