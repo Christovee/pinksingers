@@ -5,8 +5,8 @@
 </head>
 <body>
 	<form action="/saveMember" method="post" id="memberForm" name="memberForm">
-		<input type="text" id="name" name="name"><br/>
-		<input type="text" id="email" name="email"><br/>
+		Name: <input type="text" id="name" name="name"><br/>
+		Email: <input type="text" id="email" name="email"><br/>
 		<input type="submit">
 	</form>
 </body>

@@ -11,6 +11,7 @@ public class Member {
   @Index private String name;
   private Blob photo;
   @Index private String email; 
+  private  String password;
   private String funFact;
   @Index private String section;
   @Index private String subSection;
@@ -35,11 +36,19 @@ public Long getMemberId() {
 }
 
 /**
- * @param memberId the memberId to set
+ * @return the password
  */
-public void setMemberId(Long memberId) {
-	this.memberId = memberId;
+public String getPassword() {
+	return password;
 }
+
+/**
+ * @param password the password to set
+ */
+public void setPassword(String password) {
+	this.password = password;
+}
+
 
 /**
  * @return the name
