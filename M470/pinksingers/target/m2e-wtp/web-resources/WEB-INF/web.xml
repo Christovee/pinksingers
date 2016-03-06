@@ -3,6 +3,14 @@
 <welcome-file-list>
     <welcome-file>index</welcome-file>
   </welcome-file-list>
+<servlet>
+    <servlet-name>saveMember</servlet-name>
+    <servlet-class>com.project.pinksingers.SaveMemberServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+     <servlet-name>saveMember</servlet-name>
+     <url-pattern>/saveMember</url-pattern>
+</servlet-mapping>
 <filter>
   <filter-name>ObjectifyFilter</filter-name>
   <filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
