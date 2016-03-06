@@ -31,6 +31,8 @@ public class SaveMemberServlet extends HttpServlet {
 	member = new Member(memberName, email);
 	
 	ObjectifyService.ofy().save().entity(member).now();
+	
+	resp.sendRedirect("/memberList.jsp"); 
 	}
 
 }

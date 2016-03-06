@@ -20,6 +20,7 @@ public class Member {
   public Member()
   {
 	  
+	  
   }
   
   public Member(String name, String email)

@@ -4,10 +4,7 @@
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 </head>
 <body>
-	<form action="/saveMember" method="post" id="memberForm" name="memberForm">
-		Name: <input type="text" id="name" name="name"><br/>
-		Email: <input type="text" id="email" name="email"><br/>
-		<input type="submit">
-	</form>
+<a href="/loadMemberList">View Member List</a><br/>
+<a href="member.jsp">Add Member</a><br/>
 </body>
 </html>

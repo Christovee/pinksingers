@@ -11,7 +11,7 @@
 </head>
 <body>
 	<c:forEach var="item" items="${memberList}">
-		<a href="/loadMember?memberId=${item.memberId}">${item.name}</a>
+		<a href="/loadMember?memberId=${item.memberId}">${item.name}</a><br/>
 	</c:forEach>
 </body>
 </html>

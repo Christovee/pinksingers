@@ -7,9 +7,25 @@
     <servlet-name>saveMember</servlet-name>
     <servlet-class>com.project.pinksingers.SaveMemberServlet</servlet-class>
 </servlet>
+<servlet>
+	<servlet-name>loadMember</servlet-name>
+	<servlet-class>com.project.pinksingers.LoadMemberServlet</servlet-class>
+</servlet>
+<servlet>
+	<servlet-name>loadMemberList</servlet-name>
+	<servlet-class>com.project.pinksingers.LoadMemberListServlet</servlet-class>
+</servlet>
 <servlet-mapping>
      <servlet-name>saveMember</servlet-name>
      <url-pattern>/saveMember</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+     <servlet-name>loadMemberList</servlet-name>
+     <url-pattern>/loadMemberList</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+     <servlet-name>loadMember</servlet-name>
+     <url-pattern>/loadMember</url-pattern>
 </servlet-mapping>
 <filter>
   <filter-name>ObjectifyFilter</filter-name>
