@@ -24,7 +24,7 @@ public class LoadMemberListServlet extends HttpServlet {
 	@Override
 	  public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		
-		List<Member> memberList = ObjectifyService.ofy().load().type(Member.class).order("name").list();
+		List<Member> memberList = ObjectifyService.ofy().load().type(Member.class).order("section").order("subSection").order("firstName").list();
 		
 		req.setAttribute("memberList", memberList);
 		

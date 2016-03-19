@@ -8,7 +8,8 @@ import com.google.appengine.api.datastore.Blob;
 @Entity
 public class Member {
   @Id private Long memberId;
-  @Index private String name;
+  @Index private String firstName;
+  @Index private String lastName;
   private Blob photo;
   @Index private String email; 
   private  String password;
@@ -23,9 +24,13 @@ public class Member {
 	  
   }
   
-  public Member(String name, String email)
+  public Member(String firstName, String lastName, String section, String subSection, String adminLevel, String email)
   {
-	  this.name = name;
+	  this.firstName = firstName;
+	  this.lastName = lastName;
+	  this.section = section;
+	  this.subSection = subSection;
+	  this.adminLevel = adminLevel;
 	  this.email = email;
   }
 
@@ -52,17 +57,23 @@ public void setPassword(String password) {
 
 
 /**
- * @return the name
+ * @return the firstName
  */
-public String getName() {
-	return name;
+public String getFirstName() {
+	return firstName;
 }
 
-/**
- * @param name the name to set
- */
-public void setName(String name) {
-	this.name = name;
+
+public String getLastName() {
+	return lastName;
+}
+
+public void setLastName(String lastName) {
+	this.lastName = lastName;
+}
+
+public void setFirstName(String firstName) {
+	this.firstName = firstName;
 }
 
 /**

@@ -1,18 +1,6 @@
 package com.project.pinksingers;
 
-import com.google.appengine.api.datastore.Blob;
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
-import com.google.appengine.api.users.User;
-import com.google.appengine.api.users.UserService;
-import com.google.appengine.api.users.UserServiceFactory;
-
 import java.io.IOException;
-import java.util.*;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.http.*;
 
@@ -20,8 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.RequestDispatcher;
 
 import com.googlecode.objectify.ObjectifyService;
-import com.googlecode.objectify.annotation.Id;
-import com.googlecode.objectify.annotation.Index;
+
 
 public class LoadMemberServlet extends HttpServlet {
 	@Override
@@ -56,6 +43,7 @@ public class LoadMemberServlet extends HttpServlet {
 				
 				
 		Member member = ObjectifyService.ofy().load().type(Member.class).id(memberId).now();
+		
 				
 		req.setAttribute("member", member);
 				

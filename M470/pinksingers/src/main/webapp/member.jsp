@@ -8,24 +8,101 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
+<link type="text/css" rel="stylesheet" href="stylesheet/main.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script>
+$(document).ready(function() {
+	$("#section").val('${member.section}');
+	$("#subSection").val('${member.subSection}');
+	$("#adminLevel").val('${member.adminLevel}');
+});
+
+</script>
 </head>
 <body>
-	<c:choose>
+	<div class="header"></div>
+<div class="row">
+  <div class="col-3 menu">
+  <ul>
+	<li><a href="/loadMemberList">View Member List</a></li>
+	<li><a href="member.jsp">Add Member</a></li>
+  </ul>
+  </div>
+  <div class="col-9">
+  <c:choose>
 		<c:when test="${empty member.memberId}">
-			<form action="/saveMember" method="post" id="memberForm" name="memberForm">
+			<c:set var="formAction" value="saveMember"/>
 		</c:when>
 		<c:otherwise>
-			<form action="/updateMember" method="post" id="memberForm" name="memberForm">
+			<c:set var="formAction" value="updateMember"/>
 		</c:otherwise>
 	</c:choose>
-		<c:if test="${status == 'updated'}">Changes has been saved<br/></c:if>
+	<form action="/${formAction}" method="post" id="memberForm" name="memberForm">
+		<c:if test="${status == 'updated'}">Changes have been saved<br/></c:if>
 		<c:if test="${status == 'saved'}">Member has been added<br/></c:if>
 		<input type="hidden" name="memberId" value="${member.memberId}">
-		Name: <input type="text" id="name" name="name" value="${member.name}"><br/>
-		Email: <input type="text" id="email" name="email" value="${member.email}"><br/>
-		<input type="submit">
+		<table>
+		<tr>
+			<td><label>First Name</label></td>
+			<td><input type="text" id="firstName" name="firstName" value="${member.firstName}"></td>
+		</tr>
+		<tr>
+			<td><label>Last Name</label></td>
+			<td><input type="text" id="lastName" name="lastName" value="${member.lastName}"></td>
+		</tr>
+		<tr>
+			<td><label>Section</label></td>
+			<td>
+				<select name="section" id="section">
+					<option value="Soprano">Soprano</option>
+					<option value="Alto">Alto</option>
+					<option value="Tenor">Tenor</option>
+					<option value="Bass">Bass</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><label>Sub Section</label></td>
+			<td>
+				<select name="subSection" id="subSection">
+					<option value=1>1</option>
+					<option value=2>2</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><label>Email</label></td>
+			<td><input type="text" id="email" name="email" value="${member.email}"></td>
+		</tr>
+		<tr>
+			<td><label>Access Level</label></td>
+			<td>
+				<select name="adminLevel" id="adminLevel">
+					<option value="member">Member</option>
+					<option value="sectionLeader">Section Leader</option>
+					<option value="admin">Admin</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td><input type="submit"></td>
+		</tr>
 	</form>
+	<c:if test="${not empty member.memberId}">
+		<tr>
+			<td>&nbsp;</td>
+			<td>
+				<form action="/sendCreds" method="post" id="sendCreds" name="sendCreds">
+					<input type="hidden" name="memberId" value="${member.memberId}">
+					<input type="submit" value="Send Login Credentials">
+				</form>
+			</td>
+		</tr>
+	</c:if>
+	</table>
+  </div>
+</div>
 </body>
 </html>

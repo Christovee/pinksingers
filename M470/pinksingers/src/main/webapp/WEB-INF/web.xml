@@ -19,6 +19,10 @@
 	<servlet-name>updateMember</servlet-name>
 	<servlet-class>com.project.pinksingers.UpdateMemberServlet</servlet-class>
 </servlet>
+<servlet>
+	<servlet-name>sendCreds</servlet-name>
+	<servlet-class>com.project.pinksingers.SendCredentialsServlet</servlet-class>
+</servlet>
 <servlet-mapping>
      <servlet-name>saveMember</servlet-name>
      <url-pattern>/saveMember</url-pattern>
@@ -34,6 +38,10 @@
 <servlet-mapping>
      <servlet-name>updateMember</servlet-name>
      <url-pattern>/updateMember</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+     <servlet-name>sendCreds</servlet-name>
+     <url-pattern>/sendCreds</url-pattern>
 </servlet-mapping>
 <filter>
   <filter-name>ObjectifyFilter</filter-name>

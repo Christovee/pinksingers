@@ -25,18 +25,26 @@ public class UpdateMemberServlet extends HttpServlet {
 	  public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 	
 		  final Long memberId = Long.valueOf(req.getParameter("memberId"));
-		  final String name = req.getParameter("name");
+		  final String firstName = req.getParameter("firstName");
+		  final String lastName = req.getParameter("lastName");
+		  final String section = req.getParameter("section");
+		  final String subSection = req.getParameter("subSection");
+		  final String adminLevel = req.getParameter("adminLevel");
 		  final String email = req.getParameter("email");
 		  
 		  ObjectifyService.ofy().transact(new VoidWork() {
 			    public void vrun() {
 			    	Member member = ObjectifyService.ofy().load().type(Member.class).id(memberId).now();
 			    	
-			    	member.setName(name);
+			    	member.setFirstName(firstName);
+			    	member.setLastName(lastName);
+			    	member.setSection(section);
+			    	member.setSubSection(subSection);
+			    	member.setAdminLevel(adminLevel);
 			   		member.setEmail(email);
 			    	
 			    	ObjectifyService.ofy().save().entity(member);
-			    	}
+			    }
 			    }); 
 		  
 		  req.setAttribute("memberId", memberId);

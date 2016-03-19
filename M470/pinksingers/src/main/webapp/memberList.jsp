@@ -8,10 +8,30 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
+<link type="text/css" rel="stylesheet" href="stylesheet/main.css"/>
 </head>
 <body>
-	<c:forEach var="item" items="${memberList}">
-		<a href="/loadMember?memberId=${item.memberId}">${item.name}</a><br/>
+<div class="header"></div>
+<div class="row">
+  <div class="col-3 menu">
+  <ul>
+	<li><a href="/loadMemberList">View Member List</a></li>
+	<li><a href="member.jsp">Add Member</a></li>
+  </ul>
+  </div>
+  <div class="col-9">
+  	<table>
+  	<tr>
+  		<th>Name</th>
+  		<th>Section</th>
+ 	</tr>
+  	<c:forEach var="item" items="${memberList}">
+  		<tr>
+			<td><a href="/loadMember?memberId=${item.memberId}">${item.firstName}&nbsp;${item.lastName}</a></td>
+			<td><a href="/loadMember?memberId=${item.memberId}">${item.section}&nbsp;${item.subSection}</a></td>
 	</c:forEach>
+  	</table>
+  </div>
+</div>
 </body>
 </html>

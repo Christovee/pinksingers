@@ -26,10 +26,14 @@ public class SaveMemberServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 	Member member;
 	
-	String memberName = req.getParameter("name");
+	String firstName = req.getParameter("firstName");
+	String lastName = req.getParameter("lastName");
+	String section = req.getParameter("section");
+	String subSection = req.getParameter("subSection");
+	String adminLevel = req.getParameter("adminLevel");
 	String email = req.getParameter("email");
 	
-	member = new Member(memberName, email);
+	member = new Member(firstName, lastName, section, subSection, adminLevel, email);
 	
 	ObjectifyService.ofy().save().entity(member).now();
 	

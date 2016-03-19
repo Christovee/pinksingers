@@ -8,10 +8,11 @@ body {
 }
 
 .header{
-	background-color: #ffffff;
+	background-color: #000000;
 	background-image: url("../images/logo.png");
 	background-repeat: no-repeat;
 	height: 110px;
+	width: 100%;
 }
 
 /* For mobile phones: */
