@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.servlet.http.*;
 
 import javax.servlet.ServletException;
-import javax.servlet.RequestDispatcher;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -21,6 +20,7 @@ import com.googlecode.objectify.VoidWork;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+@SuppressWarnings("serial")
 public class SendCredentialsServlet extends HttpServlet {
 	  @Override
 	  public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
