@@ -8,7 +8,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-<link type="text/css" rel="stylesheet" href="stylesheet/main.css"/>
+<link type="text/css" rel="stylesheet" href="../stylesheet/main.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script>
@@ -25,8 +25,7 @@ $(document).ready(function() {
 <div class="row">
   <div class="col-3 menu">
   <ul>
-	<li><a href="/loadMemberList">View Member List</a></li>
-	<li><a href="member.jsp">Add Member</a></li>
+	<jsp:include page="../menu.jsp" />
   </ul>
   </div>
   <div class="col-9">

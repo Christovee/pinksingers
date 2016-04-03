@@ -29,6 +29,7 @@ public class LoginServlet extends HttpServlet {
 		String password = req.getParameter("password").toString().toLowerCase();
 		String access = "";
 		String firstName = "";
+		Long memberId = 0L;
 		boolean userFlag = false;
 		boolean passwordFlag = false;
 		
@@ -41,6 +42,7 @@ public class LoginServlet extends HttpServlet {
 					passwordFlag = true;
 					access = member.getAdminLevel();
 					firstName = member.getFirstName();
+					memberId = member.getMemberId();
 					
 				}
 				
@@ -52,9 +54,9 @@ public class LoginServlet extends HttpServlet {
 			if(passwordFlag)
 			{
 				HttpSession session = req.getSession();
-			    session.setAttribute("email", email);
-			    session.setAttribute("access", access);
-			    session.setAttribute("firstName", firstName);
+			    session.setAttribute("sessionAccess", access);
+			    session.setAttribute("sessionFirstName", firstName);
+			    session.setAttribute("sessionMemberId", memberId);
 				rd = getServletContext().getRequestDispatcher("/index.jsp");
 			}else{
 				req.setAttribute("status", "password");

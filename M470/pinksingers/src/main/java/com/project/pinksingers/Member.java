@@ -10,7 +10,7 @@ public class Member {
   @Id private Long memberId;
   @Index private String firstName;
   @Index private String lastName;
-  private Blob photo;
+  private String photo;
   @Index private String email; 
   private  String password;
   private String funFact;
@@ -79,14 +79,14 @@ public void setFirstName(String firstName) {
 /**
  * @return the photo
  */
-public Blob getPhoto() {
+public String getPhoto() {
 	return photo;
 }
 
 /**
  * @param photo the photo to set
  */
-public void setPhoto(Blob photo) {
+public void setPhoto(String photo) {
 	this.photo = photo;
 }
 

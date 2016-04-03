@@ -14,10 +14,7 @@
 <div class="header"></div>
 <div class="row">
   <div class="col-3 menu">
-  <ul>
-	<li><a href="/loadMemberList">View Member List</a></li>
-	<li><a href="member.jsp">Add Member</a></li>
-  </ul>
+  	<jsp:include page="menu.jsp" />
   </div>
   <div class="col-9">
   	<table>
