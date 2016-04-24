@@ -27,7 +27,7 @@ public class UpdateMemberServlet extends HttpServlet {
 		  final Long memberId = Long.valueOf(req.getParameter("memberId"));
 		  final String firstName = req.getParameter("firstName");
 		  final String lastName = req.getParameter("lastName");
-		  final String section = req.getParameter("section");
+		  final Section section = Section.convertString(req.getParameter("section"));
 		  final String subSection = req.getParameter("subSection");
 		  final String adminLevel = req.getParameter("adminLevel");
 		  final String email = req.getParameter("email");

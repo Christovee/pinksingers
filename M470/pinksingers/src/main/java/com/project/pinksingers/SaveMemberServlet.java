@@ -28,7 +28,7 @@ public class SaveMemberServlet extends HttpServlet {
 	
 	String firstName = req.getParameter("firstName");
 	String lastName = req.getParameter("lastName");
-	String section = req.getParameter("section");
+	Section section = Section.convertString(req.getParameter("section"));
 	String subSection = req.getParameter("subSection");
 	String adminLevel = req.getParameter("adminLevel");
 	String email = req.getParameter("email");

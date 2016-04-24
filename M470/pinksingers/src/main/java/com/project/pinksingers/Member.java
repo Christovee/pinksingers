@@ -6,7 +6,7 @@ import java.lang.String;
 import com.google.appengine.api.datastore.Blob;
 
 @Entity
-public class Member {
+public class Member implements Comparable<Member>{
   @Id private Long memberId;
   @Index private String firstName;
   @Index private String lastName;
@@ -14,7 +14,7 @@ public class Member {
   @Index private String email; 
   private  String password;
   private String funFact;
-  @Index private String section;
+  @Index private Section section;
   @Index private String subSection;
   @Index private String adminLevel;
   
@@ -24,7 +24,7 @@ public class Member {
 	  
   }
   
-  public Member(String firstName, String lastName, String section, String subSection, String adminLevel, String email)
+  public Member(String firstName, String lastName, Section section, String subSection, String adminLevel, String email)
   {
 	  this.firstName = firstName;
 	  this.lastName = lastName;
@@ -119,16 +119,17 @@ public void setFunFact(String funFact) {
 }
 
 /**
- * @return the section
+ * @return the section as String
  */
 public String getSection() {
-	return section;
+	return Section.getSectionName(this.section);
 }
+
 
 /**
  * @param section the section to set
  */
-public void setSection(String section) {
+public void setSection(Section section) {
 	this.section = section;
 }
 
@@ -159,7 +160,22 @@ public String getAdminLevel() {
 public void setAdminLevel(String adminLevel) {
 	this.adminLevel = adminLevel;
 }
-  
-  
-  
+
+@Override
+public int compareTo(Member other) {
+	int i = section.compareTo(other.section);
+	    if (i != 0) return i;
+
+	    i = subSection.compareTo(other.subSection);
+	    if (i != 0) return i;
+	    
+	    i = firstName.compareTo(other.firstName);
+	    if (i != 0) return i;
+
+	    return lastName.compareTo(other.lastName);
+	}
 }
+  
+  
+  
+
