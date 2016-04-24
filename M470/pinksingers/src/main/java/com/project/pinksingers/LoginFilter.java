@@ -28,7 +28,8 @@ public class LoginFilter implements Filter {
         boolean loggedIn = session != null && session.getAttribute("sessionMemberId") != null;
         boolean loginRequest = request.getRequestURI().equals("/login.jsp") || request.getRequestURI().equals("/login") ;
         
-        if (loggedIn || loginRequest) {
+       if (loggedIn || loginRequest) {
+        
             chain.doFilter(request, response);
         } else {
     	   response.sendRedirect("/login.jsp");

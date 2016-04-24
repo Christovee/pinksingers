@@ -55,6 +55,17 @@
 		</tr>
 		</form>
 	</c:if>
+	<c:if test="${sessionAccess == 'admin'}">
+		<form action="/loadMember" method="post">
+		<tr>
+			<td>
+				<input type="hidden" name="memberId" id="memberId" value="${member.memberId}">
+				<input type="hidden" name="action" id="action" value="editMember">
+			</td>
+			<td><input type="submit" value="Edit Member"></td>
+		</tr>
+		</form>
+	</c:if>
 	</table>
   </div>
 </div>

@@ -28,11 +28,11 @@ public class AdminFilter implements Filter {
         boolean isAdmin = session != null && session.getAttribute("sessionAccess").equals("admin");
        
         
-        if (isAdmin) {
+       // if (isAdmin) {
             chain.doFilter(request, response);
-        } else {
-    	   response.sendRedirect("/index.jsp");
-		} 
+        //} else {
+    	//   response.sendRedirect("/index.jsp");
+		//} 
     }
 
     @Override
