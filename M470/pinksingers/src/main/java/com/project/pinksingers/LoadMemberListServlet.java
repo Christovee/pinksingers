@@ -11,7 +11,6 @@ import com.google.appengine.api.users.UserServiceFactory;
 
 import java.io.IOException;
 import java.util.*;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.http.*;
 
@@ -20,11 +19,14 @@ import javax.servlet.RequestDispatcher;
 
 import com.googlecode.objectify.ObjectifyService;
 
+@SuppressWarnings("serial")
 public class LoadMemberListServlet extends HttpServlet {
 	@Override
 	  public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		
 		List<Member> memberList = ObjectifyService.ofy().load().type(Member.class).order("section").order("subSection").order("firstName").list();
+		
+		Collections.sort(memberList);
 		
 		req.setAttribute("memberList", memberList);
 		

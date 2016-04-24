@@ -17,6 +17,7 @@ import com.googlecode.objectify.ObjectifyService;
 
 
 
+@SuppressWarnings("serial")
 public class LoadMemberServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException 
