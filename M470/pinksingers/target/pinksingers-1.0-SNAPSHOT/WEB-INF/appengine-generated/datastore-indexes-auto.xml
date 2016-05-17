@@ -1,16 +1,11 @@
-<<<<<<< HEAD
-<!-- Indices written at Sun, 24 Apr 2016 17:07:19 BST -->
-=======
-<!-- Indices written at Sun, 10 Apr 2016 14:40:19 BST -->
->>>>>>> branch 'indexpage' of https://github.com/Christovee/pinksingers.git
+<!-- Indices written at Sun, 15 May 2016 16:32:48 PDT -->
 
 <datastore-indexes>
 
-    <!-- Used 1 time in query history -->
+    <!-- Used 3 times in query history -->
     <datastore-index kind="Member" ancestor="false" source="auto">
-        <property name="section" direction="asc"/>
-        <property name="subSection" direction="asc"/>
-        <property name="firstName" direction="asc"/>
+        <property name="Section" direction="asc"/>
+        <property name="email" direction="asc"/>
     </datastore-index>
 
 </datastore-indexes>

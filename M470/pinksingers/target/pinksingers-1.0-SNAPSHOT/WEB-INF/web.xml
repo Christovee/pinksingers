@@ -35,6 +35,10 @@
 	<servlet-name>uploadPhoto</servlet-name>
 	<servlet-class>com.project.pinksingers.UploadPhotoServlet</servlet-class>
 </servlet>
+<servlet>
+	<servlet-name>loadGroups</servlet-name>
+	<servlet-class>com.project.pinksingers.LoadGroupsServlet</servlet-class>
+</servlet>
 <servlet-mapping>
      <servlet-name>saveMember</servlet-name>
      <url-pattern>/saveMember</url-pattern>
@@ -66,6 +70,10 @@
 <servlet-mapping>
      <servlet-name>uploadPhoto</servlet-name>
      <url-pattern>/uploadPhoto</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+     <servlet-name>loadGroups</servlet-name>
+     <url-pattern>/loadGroups</url-pattern>
 </servlet-mapping>
 <filter>
   <filter-name>ObjectifyFilter</filter-name>

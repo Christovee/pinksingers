@@ -8,14 +8,32 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-<link type="text/css" rel="stylesheet" href="stylesheet/main.css"/>
-<script type="text/javascript">
-      // Your Client ID can be retrieved from your project in the Google
-      // Developer Console, https://console.developers.google.com
+<link type="text/css" rel="stylesheet" href="../stylesheet/main.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+      
       var CLIENT_ID = '582070922829-cln9q9bes7uq0ogvb9qimgcstpg5ce3j.apps.googleusercontent.com';
 
-      var SCOPES = ['https://www.googleapis.com/auth/admin.directory.group.member.readonly', 'https://www.googleapis.com/auth/admin.directory.group.readonly'];
+      var SCOPES = ['https://www.googleapis.com/auth/admin.directory.group.member.readonly', 'https://www.googleapis.com/auth/admin.directory.group.readonly', ];
 
+      var altoGroup = {};
+      var bassGroup = {};
+      var tenorGroup = {};
+      var sopranoGroup = {};
+      
+      $(document).ready(function() {
+      	altoGroup = ${altoGroup};
+      	bassGroup = ${bassGroup};
+      	tenorGroup = ${tenorGroup};
+      	sopranoGroup = ${sopranoGroup};
+      	console.log(altoGroup);
+      	console.log(bassGroup);
+      	console.log(tenorGroup);
+      	console.log(sopranoGroup);
+      	//console.log(${tenorGroup});
+      	
+      });
+      
       /**
        * Check if current user has authorized this application.
        */
@@ -71,34 +89,68 @@
        */
       /*function listUsers() {
         var request = gapi.client.directory.users.list({
-          //'domain': 'viveash.net',
-          'domain': 'pinksingers.co.uk',
+          'domain': 'viveash.net',
           'fields': 'users',
           'maxResults': 10,
           'orderBy': 'email'
         });*/
         
-        function listUsers() {
+        /*function listUsers() {
             var request = gapi.client.directory.members.list({
-              'groupKey': 'tenors@pinksingers.co.uk',
+              'groupKey': 'testgroup1@viveash.net',
               'fields': 'members',
               'maxResults': 10,
-            });
+            });*/
+            
+		function listUsers() 
+		{
+			var request = gapi.client.directory.groups.list({
+        	'domain': 'viveash.net',
+            'fields': 'groups',
+            'maxResults': 10,
+        	});  
+			
+			request.execute(function(resp) {
+          		//var members = resp.members;
+          		var members = resp.groups;
+          		//appendPre('Groups:');
 
-        request.execute(function(resp) {
-          var members = resp.members;
-          appendPre('Members:');
+          		if (members && members.length > 0) 
+          		{
+            		for (i = 0; i < members.length; i++) 
+            		{
+              			var member = members[i];
+              			appendPre("output", member.name, member.email);
+            		}
+          		} else {
+            			//appendPre('No users found.');
+          		}
+        	});
+      	}
+            
+            function listMembers(divId, groupEmail) 
+    		{
+            	var request = gapi.client.directory.members.list({
+                    'groupKey': groupEmail,
+                    'fields': 'members',
+                    'maxResults': 10,
+                  });
+    			
+    			request.execute(function(resp) {
+              		var members = resp.members;
 
-          if (members && members.length > 0) {
-            for (i = 0; i < members.length; i++) {
-              var member = members[i];
-              appendPre('-' + member.email);
-            }
-          } else {
-            appendPre('No users found.');
-          }
-        });
-      }
+              		if (members && members.length > 0) 
+              		{
+                		for (i = 0; i < members.length; i++) 
+                		{
+                  			var member = members[i];
+                  			appendPre(divId, member.name, member.email);
+                		}
+              		} else {
+                			//appendPre('No users found.');
+              		}
+            	});
+          	}
 
       /**
        * Append a pre element to the body containing the given message
@@ -106,16 +158,20 @@
        *
        * @param {string} message Text to be placed in pre element.
        */
-      function appendPre(message) {
-        var pre = document.getElementById('output');
-        var textContent = document.createTextNode(message + '\n');
-        pre.appendChild(textContent);
+      function appendPre(divId, name, email) {  
+    	   
+       	if(divId == "output")
+       	{
+    		$("#"+divId).append("<div id='"+name+"'><a href='#' onclick='listMembers(&quot;"+name+"&quot;,&quot;"+email+"&quot); return false'>"+name+" ("+email+")</a></div>");
+       	}else{
+       		$("#"+divId).append("<p>"+email+"</p>");
+       	}  
       }
 
     </script>
     <script src="https://apis.google.com/js/client.js?onload=checkAuth">
     </script>
-</head>
+  </head>
 <body>
 <div class="header"></div>
 <div class="row">
@@ -130,7 +186,7 @@
         Authorize
       </button>
     </div>
-    <pre id="output"></pre>
+    <div id="output"></div>
   
   </div>
 </div>

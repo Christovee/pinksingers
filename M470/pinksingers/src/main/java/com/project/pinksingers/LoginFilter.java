@@ -29,7 +29,6 @@ public class LoginFilter implements Filter {
         boolean loginRequest = request.getRequestURI().equals("/login.jsp") || request.getRequestURI().equals("/login") ;
         
        if (loggedIn || loginRequest) {
-        
             chain.doFilter(request, response);
         } else {
     	   response.sendRedirect("/login.jsp");
