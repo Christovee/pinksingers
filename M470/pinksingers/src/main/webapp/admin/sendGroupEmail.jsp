@@ -16,21 +16,16 @@
 
       var SCOPES = ['https://www.googleapis.com/auth/admin.directory.group.member.readonly', 'https://www.googleapis.com/auth/admin.directory.group.readonly', ];
 
-      var altoGroup = {};
-      var bassGroup = {};
-      var tenorGroup = {};
-      var sopranoGroup = {};
+      var altoGroup = [];
+      var bassGroup = [];
+      var tenorGroup = [];
+      var sopranoGroup = [];
       
       $(document).ready(function() {
-      	altoGroup = ${altoGroup};
+      	altoGroup = ${altoEmails};
       	bassGroup = ${bassGroup};
       	tenorGroup = ${tenorGroup};
       	sopranoGroup = ${sopranoGroup};
-      	console.log(altoGroup);
-      	console.log(bassGroup);
-      	console.log(tenorGroup);
-      	console.log(sopranoGroup);
-      	//console.log(${tenorGroup});
       	
       });
       
@@ -52,15 +47,16 @@
        * @param {Object} authResult Authorization result.
        */
       function handleAuthResult(authResult) {
-        var authorizeDiv = document.getElementById('authorize-div');
         if (authResult && !authResult.error) {
           // Hide auth UI, then load client library.
-          authorizeDiv.style.display = 'none';
+          $("#authorize-div").hide();
+          $("#output").show();
           loadDirectoryApi();
         } else {
           // Show auth UI, allowing the user to initiate authorization by
           // clicking authorize button.
-          authorizeDiv.style.display = 'inline';
+        	$("#authorize-div").show();
+            $("#output").hide();
         }
       }
 
@@ -104,16 +100,16 @@
             
 		function listUsers() 
 		{
-			var request = gapi.client.directory.groups.list({
+        	listMembers("output", "altos@viveash.net");
+		
+			/*var request = gapi.client.directory.groups.list({
         	'domain': 'viveash.net',
             'fields': 'groups',
             'maxResults': 10,
         	});  
 			
 			request.execute(function(resp) {
-          		//var members = resp.members;
           		var members = resp.groups;
-          		//appendPre('Groups:');
 
           		if (members && members.length > 0) 
           		{
@@ -125,32 +121,55 @@
           		} else {
             			//appendPre('No users found.');
           		}
-        	});
+        	});*/
       	}
             
-            function listMembers(divId, groupEmail) 
-    		{
-            	var request = gapi.client.directory.members.list({
-                    'groupKey': groupEmail,
-                    'fields': 'members',
-                    'maxResults': 10,
-                  });
+        function listMembers(divId, groupEmail) 
+    	{
+        	var domainGroup = [];	
+    	
+            var request = gapi.client.directory.members.list({
+                'groupKey': groupEmail,
+                'fields': 'members',
+                'maxResults': 10,
+                });
     			
-    			request.execute(function(resp) {
-              		var members = resp.members;
+    		request.execute(function(resp) {
+            var members = resp.members;
 
-              		if (members && members.length > 0) 
-              		{
-                		for (i = 0; i < members.length; i++) 
-                		{
-                  			var member = members[i];
-                  			appendPre(divId, member.name, member.email);
-                		}
-              		} else {
-                			//appendPre('No users found.');
-              		}
-            	});
-          	}
+              	if (members && members.length > 0) 
+              	{
+                	for (var i = 0; i < members.length; i++) 
+                	{
+                  		var memberEmail = members[i].email;
+                  		domainGroup.push(memberEmail);
+                  		console.log(domainGroup);
+                  		//appendPre(divId, member.name, member.email);
+                  			
+                	}
+         
+              	}
+            checkMembers(domainGroup);  	
+            });
+    			
+ 		}
+            
+       function checkMembers(domainGroup)
+       {
+       		console.log(domainGroup);
+       		console.log(altoGroup);
+			for( var i =0; i < altoGroup.length; i++ )
+    		{
+				if(domainGroup.indexOf(altoGroup[i]) != -1)
+				{
+					$('[name="'+altoGroup[i]+'"]').html("True");
+				}else{
+					$('[name="'+altoGroup[i]+'"]').html("False");
+				}
+				
+    		}	   
+       }
+    	   
 
       /**
        * Append a pre element to the body containing the given message
@@ -186,8 +205,25 @@
         Authorize
       </button>
     </div>
-    <div id="output"></div>
-  
+    <div id="output" style="display: none">
+    	<table>
+    		<tr>
+    			<th colspan="3">Altos</th>
+    		<tr>
+    		<tr>
+    			<th>Name</th>
+    			<th>Email</th>
+    			<th>Mailing Group</th>
+    		</tr>
+    		<c:forEach var="item" items="${altoGroup}">
+    			<tr>
+    				<td>${item.firstName}&nbsp;${item.lastName}</td>
+    				<td>${item.email}</td>
+    				<td name='${item.email}'></td>
+    			</tr>
+    		</c:forEach>	
+    	</table>
+    </div>
   </div>
 </div>
 </body>

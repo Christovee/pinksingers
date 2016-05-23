@@ -1,10 +1,17 @@
-<!-- Indices written at Sun, 15 May 2016 16:32:48 PDT -->
+<!-- Indices written at Sun, 22 May 2016 19:48:17 PDT -->
 
 <datastore-indexes>
 
-    <!-- Used 3 times in query history -->
+    <!-- Used 1 time in query history -->
     <datastore-index kind="Member" ancestor="false" source="auto">
-        <property name="Section" direction="asc"/>
+        <property name="section" direction="asc"/>
+        <property name="subSection" direction="asc"/>
+        <property name="firstName" direction="asc"/>
+    </datastore-index>
+
+    <!-- Used 4 times in query history -->
+    <datastore-index kind="Member" ancestor="false" source="auto">
+        <property name="section" direction="asc"/>
         <property name="email" direction="asc"/>
     </datastore-index>
 
