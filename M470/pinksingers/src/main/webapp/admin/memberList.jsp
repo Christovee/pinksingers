@@ -131,6 +131,21 @@
 			$('.'+section+'[name="'+memberEmail+'"]').html(html); 	
 	    }); 			
  	}
+	
+	function deleteUser(memberEmail, groupEmail)
+	{
+		var request = gapi.client.directory.members.delete({
+			'groupKey': groupEmail,
+			'memberKey': memberEmail,
+	    });
+	    			
+		request.execute(function(resp) {
+
+	        var html = "<button class='removed'>Removed</button>"
+			$('[name="'+memberEmail+'"]').html(html); 	
+	    }); 	
+		
+	}
             
 	function checkMembers(domainGroup, groupEmail, serverGroup, section)
     {
@@ -140,12 +155,32 @@
 			{
 				var html = "<button class='member'>Member</button>";
 				$('.'+section+'[name="'+serverGroup[i]+'"]').html(html);
+				var index = domainGroup.indexOf(serverGroup[i]);
+				domainGroup.splice(index, 1);
 			}
 			else{
 				var html = "<button class='add' onclick='addUser(&quot;"+serverGroup[i]+"&quot;,&quot;"+groupEmail+"&quot;,&quot;"+section+"&quot;)'>Add</button>";
 				$('.'+section+'[name="'+serverGroup[i]+'"]').html(html);
 			}
-		}	   
+		}	
+		outputExtraMembers(domainGroup, groupEmail);
+	}
+	
+	function outputExtraMembers(domainGroup, groupEmail)
+	{
+		if(domainGroup.length > 0)
+		{
+			var html = $("#groups").html() + "<tr><th colspan='2'>Group:"+groupEmail+"</th></tr>";
+			console.log(html);
+			for(var i = 0; i < domainGroup.length; i++)
+			{
+				html = html + "<tr><td>"+domainGroup[i]+"</td>";
+				html = html + "<td name='"+domainGroup[i]+"'>";
+				html = html + "<button class='add' onclick='deleteUser(&quot;"+domainGroup[i]+"&quot;,&quot;"+groupEmail+"&quot;)'>Remove</button></td></tr>";
+			}
+			$("#groups").html(html);
+			console.log(html);
+		}
 	}
     	   
     </script>
@@ -185,6 +220,8 @@
     			<td class="${item.section}" name='${item.email}'></td>
 			</tr>
 		</c:forEach>
+		</table>
+		<table id="groups">
   		</table>
   	</div>
   </div>
