@@ -1,11 +1,10 @@
 package com.project.pinksingers;
 
-import com.googlecode.objectify.Objectify;
-import com.googlecode.objectify.ObjectifyFactory;
-import com.googlecode.objectify.ObjectifyService;
-
-import javax.servlet.ServletContextListener;
 import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+
+import com.googlecode.objectify.ObjectifyService;
+import com.sappenin.objectify.translate.UTCReadableInstantDateTranslatorFactory;
 
 /**
  * OfyHelper, a ServletContextListener, is setup in web.xml to run before a JSP is run.  This is
@@ -15,7 +14,11 @@ public class OfyHelper implements ServletContextListener {
   public void contextInitialized(ServletContextEvent event) {
     // This will be invoked as part of a warmup request, or the first user request if no warmup
     // request.
+	
+	ObjectifyService.factory().getTranslators().add(new UTCReadableInstantDateTranslatorFactory());
     ObjectifyService.register(Member.class);
+    ObjectifyService.register(Season.class);
+    
   }
 
   public void contextDestroyed(ServletContextEvent event) {

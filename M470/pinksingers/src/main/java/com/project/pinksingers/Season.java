@@ -1,6 +1,10 @@
 package com.project.pinksingers;
 
-import java.util.Date;
+
+
+
+
+import org.joda.time.DateTime;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
@@ -11,8 +15,8 @@ public class Season {
   @Id private Long seasonId;
   @Index private String seasonName;
   @Index private String concertTitle;
-  @Index private Date seasonStart;
-  @Index private Date seasonEnd;
+  @Index private DateTime seasonStart;
+  @Index private DateTime seasonEnd;
   
 /**
  * Empty constructor required by objectify 
@@ -28,7 +32,7 @@ public Season()
  * @param seasonStart
  * @param seasonEnd
  */
-public Season(String seasonName, String concertTitle, Date seasonStart, Date seasonEnd) {
+public Season(String seasonName, String concertTitle, DateTime seasonStart, DateTime seasonEnd) {
 	super();
 	this.seasonName = seasonName;
 	this.concertTitle = concertTitle;
@@ -61,19 +65,19 @@ public void setConcertTitle(String concertTitle) {
 	this.concertTitle = concertTitle;
 }
 
-public Date getSeasonStart() {
+public DateTime getSeasonStart() {
 	return seasonStart;
 }
 
-public void setSeasonStart(Date seasonStart) {
+public void setSeasonStart(DateTime seasonStart) {
 	this.seasonStart = seasonStart;
 }
 
-public Date getSeasonEnd() {
+public DateTime getSeasonEnd() {
 	return seasonEnd;
 }
 
-public void setSeasonEnd(Date seasonEnd) {
+public void setSeasonEnd(DateTime seasonEnd) {
 	this.seasonEnd = seasonEnd;
 }  
 

@@ -24,6 +24,10 @@
 	<servlet-class>com.project.pinksingers.SaveSeasonServlet</servlet-class>
 </servlet>
 <servlet>
+	<servlet-name>loadSeason</servlet-name>
+	<servlet-class>com.project.pinksingers.LoadSeasonServlet</servlet-class>
+</servlet>
+<servlet>
 	<servlet-name>sendCreds</servlet-name>
 	<servlet-class>com.project.pinksingers.SendCredentialsServlet</servlet-class>
 </servlet>
@@ -62,6 +66,10 @@
 <servlet-mapping>
      <servlet-name>saveSeason</servlet-name>
      <url-pattern>/saveSeason</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+     <servlet-name>loadSeason</servlet-name>
+     <url-pattern>/loadSeason</url-pattern>
 </servlet-mapping>
 <servlet-mapping>
      <servlet-name>sendCreds</servlet-name>
