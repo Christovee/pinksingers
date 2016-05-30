@@ -62,22 +62,8 @@ public class LoadSeasonServlet extends HttpServlet {
 		
 		req.setAttribute("season", season);
 		
-		String seasonStart = convertDate(req.getParameter("seasonStart"));
-		
-		req.setAttribute("seasonStart", seasonStart);
-
-		String seasonEnd = convertDate(req.getParameter("seasonEnd"));
-		
-		req.setAttribute("seasonEnd", seasonEnd);
-		
 		RequestDispatcher rd = req.getRequestDispatcher("/admin/seasonEdit.jsp");
 		rd.forward(req, resp); 
 	}
 	
-	private String convertDate(String dateTime)
-	{
-		DateTimeFormatter format = ISODateTimeFormat.date();
-		DateTime jodaTime = format.parseDateTime(dateTime);
-		return format.print(jodaTime);
-	}
 }

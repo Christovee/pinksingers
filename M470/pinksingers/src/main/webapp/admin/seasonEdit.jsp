@@ -51,11 +51,11 @@ $(document).ready(function() {
 		</tr>
 		<tr>
 			<td><label>Start Date</label></td>
-			<td><input type="date" id="seasonStart" name="seasonStart" value="${seasonStart}"></td>
+			<td><input type="date" id="seasonStart" name="seasonStart" value="${season.seasonStart}"></td>
 		</tr>
 		<tr>
 			<td><label>End Date</label></td>
-			<td><input type="date" id="seasonEnd" name="seasonEnd" value="${seasonEnd}"></td>
+			<td><input type="date" id="seasonEnd" name="seasonEnd" value="${season.seasonEnd}"></td>
 		</tr>
 		<tr>
 			<td>&nbsp;</td>

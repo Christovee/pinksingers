@@ -5,6 +5,8 @@ package com.project.pinksingers;
 
 
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
@@ -65,20 +67,26 @@ public void setConcertTitle(String concertTitle) {
 	this.concertTitle = concertTitle;
 }
 
-public DateTime getSeasonStart() {
-	return seasonStart;
+public String getSeasonStart() {
+	return convertDate(seasonStart);
 }
 
 public void setSeasonStart(DateTime seasonStart) {
 	this.seasonStart = seasonStart;
 }
 
-public DateTime getSeasonEnd() {
-	return seasonEnd;
+public String getSeasonEnd() {
+	return convertDate(seasonEnd);
 }
 
 public void setSeasonEnd(DateTime seasonEnd) {
 	this.seasonEnd = seasonEnd;
 }  
+
+private String convertDate(DateTime dateTime)
+{
+	DateTimeFormatter format = ISODateTimeFormat.date();
+	return format.print(dateTime);
+}
 
 }
