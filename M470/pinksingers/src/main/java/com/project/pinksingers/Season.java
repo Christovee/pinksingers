@@ -5,6 +5,7 @@ package com.project.pinksingers;
 
 
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
 
@@ -34,12 +35,12 @@ public Season()
  * @param seasonStart
  * @param seasonEnd
  */
-public Season(String seasonName, String concertTitle, DateTime seasonStart, DateTime seasonEnd) {
+public Season(String seasonName, String concertTitle, String seasonStart, String seasonEnd) {
 	super();
 	this.seasonName = seasonName;
 	this.concertTitle = concertTitle;
-	this.seasonStart = seasonStart;
-	this.seasonEnd = seasonEnd;
+	this.setSeasonStart(seasonStart); 
+	this.setSeasonEnd(seasonEnd);
 }
   
   
@@ -71,22 +72,30 @@ public String getSeasonStart() {
 	return convertDate(seasonStart);
 }
 
-public void setSeasonStart(DateTime seasonStart) {
-	this.seasonStart = seasonStart;
+public void setSeasonStart(String seasonStart) {
+	this.seasonStart = convertDate(seasonStart);
 }
 
 public String getSeasonEnd() {
 	return convertDate(seasonEnd);
 }
 
-public void setSeasonEnd(DateTime seasonEnd) {
-	this.seasonEnd = seasonEnd;
+public void setSeasonEnd(String seasonEnd) {
+	this.seasonEnd = convertDate(seasonEnd);
 }  
 
 private String convertDate(DateTime dateTime)
 {
 	DateTimeFormatter format = ISODateTimeFormat.date();
 	return format.print(dateTime);
+}
+
+private DateTime convertDate(String dateTimeString)
+{
+	DateTimeFormatter format = ISODateTimeFormat.date();
+	DateTime dateTime = new DateTime();
+	dateTime = format.parseDateTime(dateTimeString);
+	return dateTime;
 }
 
 }

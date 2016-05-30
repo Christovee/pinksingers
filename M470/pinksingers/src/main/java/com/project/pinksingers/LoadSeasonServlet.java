@@ -31,7 +31,7 @@ public class LoadSeasonServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException 
 	{
 		//Check if parameter is null isn't empty
-		if(req.getParameter("memberId") == null)
+		if(req.getParameter("seasonId") == null)
 		{
 			resp.sendRedirect("../index.jsp"); 
 		}else{

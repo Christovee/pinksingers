@@ -59,7 +59,14 @@ $(document).ready(function() {
 		</tr>
 		<tr>
 			<td>&nbsp;</td>
-			<td><input type="submit"></td>
+			<c:choose>
+			<c:when test="${empty season.seasonId}">
+				<td><input type="submit" value="Add season"></td>
+			</c:when>
+			<c:otherwise>
+				<td><input type="submit" value="Update season"></td>
+			</c:otherwise>
+			</c:choose>	
 		</tr>
 	</form>
 	</table>

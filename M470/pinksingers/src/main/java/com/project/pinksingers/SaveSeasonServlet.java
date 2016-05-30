@@ -8,10 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-
 import com.googlecode.objectify.ObjectifyService;
 
 @SuppressWarnings("serial")
@@ -23,12 +19,8 @@ public class SaveSeasonServlet extends HttpServlet {
 	
 	String seasonName = req.getParameter("seasonName");
 	String concertTitle = req.getParameter("concertTitle");
-	DateTimeFormatter format = DateTimeFormat.forPattern("yyyy-MM-dd");
-	DateTime seasonStart = new DateTime();
-	seasonStart = format.parseDateTime(req.getParameter("seasonStart"));
-	
-	DateTime seasonEnd = new DateTime();
-	seasonEnd = format.parseDateTime(req.getParameter("seasonEnd"));
+	String seasonStart = req.getParameter("seasonStart");
+	String seasonEnd = req.getParameter("seasonEnd");
 	
 	
 	season = new Season(seasonName, concertTitle, seasonStart, seasonEnd);

@@ -28,6 +28,14 @@
 	<servlet-class>com.project.pinksingers.LoadSeasonServlet</servlet-class>
 </servlet>
 <servlet>
+	<servlet-name>updateSeason</servlet-name>
+	<servlet-class>com.project.pinksingers.UpdateSeasonServlet</servlet-class>
+</servlet>
+<servlet>
+	<servlet-name>loadSeasonList</servlet-name>
+	<servlet-class>com.project.pinksingers.LoadSeasonListServlet</servlet-class>
+</servlet>
+<servlet>
 	<servlet-name>sendCreds</servlet-name>
 	<servlet-class>com.project.pinksingers.SendCredentialsServlet</servlet-class>
 </servlet>
@@ -70,6 +78,14 @@
 <servlet-mapping>
      <servlet-name>loadSeason</servlet-name>
      <url-pattern>/loadSeason</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+     <servlet-name>loadSeasonList</servlet-name>
+     <url-pattern>/loadSeasonList</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+     <servlet-name>updateSeason</servlet-name>
+     <url-pattern>/updateSeason</url-pattern>
 </servlet-mapping>
 <servlet-mapping>
      <servlet-name>sendCreds</servlet-name>
