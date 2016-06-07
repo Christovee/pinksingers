@@ -143,9 +143,6 @@
                 	{
                   		var memberEmail = members[i].email;
                   		domainGroup.push(memberEmail);
-                  		console.log(domainGroup);
-                  		//appendPre(divId, member.name, member.email);
-                  			
                 	}
          
               	}
@@ -156,8 +153,6 @@
             
        function checkMembers(domainGroup)
        {
-       		console.log(domainGroup);
-       		console.log(altoGroup);
 			for( var i =0; i < altoGroup.length; i++ )
     		{
 				if(domainGroup.indexOf(altoGroup[i]) != -1)
@@ -166,7 +161,6 @@
 				}else{
 					$('[name="'+altoGroup[i]+'"]').html("False");
 				}
-				
     		}	   
        }
     	   

@@ -1,9 +1,8 @@
 package com.project.pinksingers;
 
-import com.googlecode.objectify.annotation.*;
-import com.googlecode.objectify.Key;
-import java.lang.String;
-import com.google.appengine.api.datastore.Blob;
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 @Entity
 public class Member implements Comparable<Member>{
@@ -17,6 +16,7 @@ public class Member implements Comparable<Member>{
   @Index private Section section;
   @Index private String subSection;
   @Index private String adminLevel;
+  @Index private String status;
   
   public Member()
   {
@@ -24,7 +24,7 @@ public class Member implements Comparable<Member>{
 	  
   }
   
-  public Member(String firstName, String lastName, Section section, String subSection, String adminLevel, String email)
+  public Member(String firstName, String lastName, Section section, String subSection, String adminLevel, String email, String status)
   {
 	  this.firstName = firstName;
 	  this.lastName = lastName;
@@ -32,6 +32,7 @@ public class Member implements Comparable<Member>{
 	  this.subSection = subSection;
 	  this.adminLevel = adminLevel;
 	  this.email = email;
+	  this.status = status;
   }
 
 /**
@@ -159,6 +160,20 @@ public String getAdminLevel() {
  */
 public void setAdminLevel(String adminLevel) {
 	this.adminLevel = adminLevel;
+}
+
+/**
+ * @return the status
+ */
+public String getStatus() {
+	return status;
+}
+
+/**
+ * @param status the status to set
+ */
+public void setStatus(String status) {
+	this.status = status;
 }
 
 @Override

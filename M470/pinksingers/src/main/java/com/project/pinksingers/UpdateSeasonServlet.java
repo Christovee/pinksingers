@@ -21,6 +21,12 @@ public class UpdateSeasonServlet extends HttpServlet {
 		  final String concertTitle = req.getParameter("concertTitle");
 		  final String seasonStart = req.getParameter("seasonStart");
 		  final String seasonEnd = req.getParameter("seasonEnd");
+		  final boolean currentSeason = Boolean.valueOf(req.getParameter("currentSeason"));
+		  
+		  if(currentSeason)
+		  {
+			  Season.deleteCurrentSeason();
+		  }
 		 
 		  
 		  ObjectifyService.ofy().transact(new VoidWork() {
@@ -31,6 +37,7 @@ public class UpdateSeasonServlet extends HttpServlet {
 			    	season.setConcertTitle(concertTitle);
 			    	season.setSeasonStart(seasonStart);
 			    	season.setSeasonEnd(seasonEnd);
+			    	season.setCurrentSeason(currentSeason);
 			    	
 			    	ObjectifyService.ofy().save().entity(season);
 			    }

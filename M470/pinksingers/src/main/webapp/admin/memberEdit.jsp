@@ -85,6 +85,15 @@ $(document).ready(function() {
 			</td>
 		</tr>
 		<tr>
+			<td><label>Status</label></td>
+			<td>
+				<select name="status" id="status">
+					<option value="Active">Active</option>
+					<option value="Inactive">Inactive</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
 			<td>&nbsp;</td>
 			<td><input type="submit"></td>
 		</tr>

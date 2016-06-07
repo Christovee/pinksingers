@@ -1,25 +1,16 @@
 package com.project.pinksingers;
 
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
-import com.google.appengine.api.users.User;
-import com.google.appengine.api.users.UserService;
-import com.google.appengine.api.users.UserServiceFactory;
-
 import java.io.IOException;
-import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 
 import com.googlecode.objectify.ObjectifyService;
 
+@SuppressWarnings("serial")
 public class SaveMemberServlet extends HttpServlet {
 
 	@Override
@@ -32,8 +23,9 @@ public class SaveMemberServlet extends HttpServlet {
 	String subSection = req.getParameter("subSection");
 	String adminLevel = req.getParameter("adminLevel");
 	String email = req.getParameter("email");
+	String status = req.getParameter("status");
 	
-	member = new Member(firstName, lastName, section, subSection, adminLevel, email);
+	member = new Member(firstName, lastName, section, subSection, adminLevel, email, status);
 	
 	ObjectifyService.ofy().save().entity(member).now();
 	

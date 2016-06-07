@@ -2,6 +2,7 @@
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/Section.java
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/AdminFilter.java
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/OfyHelper.java
+/Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/SeasonMember.java
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/LoadMemberServlet.java
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/Season.java
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/SaveMemberServlet.java
@@ -13,6 +14,7 @@
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/LoadMemberListServlet.java
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/UploadPhotoServlet.java
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/LogoutServlet.java
+/Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/UpdateSeasonMembersServlet.java
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/LoginServlet.java
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/SaveSeasonServlet.java
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/UpdateMemberServlet.java

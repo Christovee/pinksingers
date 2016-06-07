@@ -1,27 +1,18 @@
 package com.project.pinksingers;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-import javax.servlet.http.*;
-
-import org.joda.time.DateTime;
-import org.joda.time.ReadableInstant;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.ISODateTimeFormat;
-
-import javax.servlet.ServletException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
-import com.google.appengine.api.blobstore.BlobstoreService;
-import com.google.appengine.api.blobstore.BlobKey;
-import com.google.appengine.api.images.ImagesServiceFactory;
-import com.google.appengine.api.images.ImagesService;
-import com.google.appengine.api.images.ServingUrlOptions;
 import com.googlecode.objectify.ObjectifyService;
+import com.google.gson.Gson;
 
 
 
@@ -61,6 +52,16 @@ public class LoadSeasonServlet extends HttpServlet {
 		Season season = ObjectifyService.ofy().load().type(Season.class).id(seasonId).now();
 		
 		req.setAttribute("season", season);
+		
+		ArrayList<SeasonMember> seasonMembers = season.getSeasonMembers();
+		
+		req.setAttribute("seasonMembers", seasonMembers);
+		
+		List<Member> memberList = ObjectifyService.ofy().load().type(Member.class).filter("status !=", "Inactive").order("status").order("section").order("subSection").order("firstName").list();
+		
+		Collections.sort(memberList);
+		
+		req.setAttribute("memberList", memberList);
 		
 		RequestDispatcher rd = req.getRequestDispatcher("/admin/seasonEdit.jsp");
 		rd.forward(req, resp); 

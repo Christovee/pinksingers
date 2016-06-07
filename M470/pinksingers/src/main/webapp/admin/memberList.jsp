@@ -85,8 +85,10 @@
 
      
 	function listUsers() {
+		listMembers("sopranos@viveash.net", sopranoEmails, "Soprano");
     	listMembers("altos@viveash.net", altoEmails, "Alto");	
     	listMembers("tenors@viveash.net", tenorEmails, "Tenor");
+    	listMembers("basses@viveash.net", bassEmails, "Bass");
     	listMembers("fullchoir@viveash.net", allEmails, "FullChoir");
       	}
             
@@ -132,7 +134,7 @@
 	    }); 			
  	}
 	
-	function deleteUser(memberEmail, groupEmail)
+	function deleteUser(section, memberEmail, groupEmail)
 	{
 		var request = gapi.client.directory.members.delete({
 			'groupKey': groupEmail,
@@ -142,7 +144,7 @@
 		request.execute(function(resp) {
 
 	        var html = "<button class='removed'>Removed</button>"
-			$('[name="'+memberEmail+'"]').html(html); 	
+			$('[name="'+section+memberEmail+'"]').html(html); 	
 	    }); 	
 		
 	}
@@ -163,10 +165,10 @@
 				$('.'+section+'[name="'+serverGroup[i]+'"]').html(html);
 			}
 		}	
-		outputExtraMembers(domainGroup, groupEmail);
+		outputExtraMembers(section, domainGroup, groupEmail);
 	}
 	
-	function outputExtraMembers(domainGroup, groupEmail)
+	function outputExtraMembers(section, domainGroup, groupEmail)
 	{
 		if(domainGroup.length > 0)
 		{
@@ -175,8 +177,8 @@
 			for(var i = 0; i < domainGroup.length; i++)
 			{
 				html = html + "<tr><td>"+domainGroup[i]+"</td>";
-				html = html + "<td name='"+domainGroup[i]+"'>";
-				html = html + "<button class='add' onclick='deleteUser(&quot;"+domainGroup[i]+"&quot;,&quot;"+groupEmail+"&quot;)'>Remove</button></td></tr>";
+				html = html + "<td name='"+section+domainGroup[i]+"'>";
+				html = html + "<button class='add' onclick='deleteUser(&quot;"+section+"&quot;,&quot;"+domainGroup[i]+"&quot;,&quot;"+groupEmail+"&quot;)'>Remove</button></td></tr>";
 			}
 			$("#groups").html(html);
 			console.log(html);

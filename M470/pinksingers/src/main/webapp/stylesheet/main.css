@@ -103,3 +103,10 @@ html {
     cursor: not-allowed;
     width: 100px;
 }
+
+.dot {
+	background: #000000;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+}

@@ -13,9 +13,38 @@
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script>
 $(document).ready(function() {
+	<c:forEach var="item" items="${memberList}">
+		$("#section"+${item.memberId}).val('${item.section}');
+		$("#subSection"+${item.memberId}).val('${item.subSection}');
+		$("#status"+${item.memberId}).val('${item.status}');
+	</c:forEach>
+	
+	if(${season.currentSeason == true})
+	{
+		$("#currentSeason").prop('checked', true);
+		$("#isCurrentSeason").val("true");
+	}else{
+		$("#isCurrentSeason").val("false");
+	}
+	
+	<c:forEach var="item" items="${seasonMembers}">
+		$("#"+${item.memberId}).css('background', 'green');
+		$("#section"+${item.memberId}).val('${item.seasonSection}');
+		$("#subSection"+${item.memberId}).val('${item.seasonSubSection}');
+		$("#status"+${item.memberId}).val('${item.seasonStatus}');
+	</c:forEach>
+	
+	//Register handler to update the hidden field on seasonMembers form
+	$('#currentSeason').change(function() {
+		   if($(this).is(":checked")) {
+			   $("#isCurrentSeason").val("true");
+		      return;
+		   }
+		   $("#isCurrentSeason").val("false");
+	});
+	
 	
 });
-
 
 </script>
 </head>
@@ -42,6 +71,9 @@ $(document).ready(function() {
 		<input type="hidden" name="seasonId" value="${season.seasonId}">
 		<table>
 		<tr>
+			<th colspan=2>Season Details</th>
+		</tr>
+		<tr>
 			<td><label>Season Name</label></td>
 			<td><input type="text" id="seasonName" name="seasonName" value="${season.seasonName}"></td>
 		</tr>
@@ -58,6 +90,10 @@ $(document).ready(function() {
 			<td><input type="date" id="seasonEnd" name="seasonEnd" value="${season.seasonEnd}"></td>
 		</tr>
 		<tr>
+			<td><label>Current Season?</label></td>
+			<td><input type="checkbox" id="currentSeason" name="currentSeason" value="true"></td>
+		</tr>
+		<tr>
 			<td>&nbsp;</td>
 			<c:choose>
 			<c:when test="${empty season.seasonId}">
@@ -70,6 +106,59 @@ $(document).ready(function() {
 		</tr>
 	</form>
 	</table>
+	<c:if test="${not empty season.seasonId}">
+		<form action="/updateSeasonMembers" method="post" id="seasonMemberForm" name="seasonMemberForm">
+		<table>
+			<tr>
+				<th colspan=4>Season Member Details</th>
+				<input type="hidden" name="seasonId" value="${season.seasonId}">
+				<input type="hidden" name="isCurrentSeason" id="isCurrentSeason">
+			</tr>
+			<tr>
+				<th></th>
+				<th>Name</th>
+				<th>Section</th>
+				<th>Status</th>
+			</tr>
+			<c:forEach var="item" items="${memberList}" varStatus="theCount">
+  			<tr>
+  				<td>
+					<div id="${item.memberId}" class="dot" style="background: red"></div>
+				</td>
+				<td>${item.firstName} ${item.lastName}</td>
+				<input type=hidden name="memberId${theCount.count}" value="${item.memberId}">
+				<td>
+					<select name="section${theCount.count}" id="section${item.memberId}">
+						<option value="Soprano">Soprano</option>
+						<option value="Alto">Alto</option>
+						<option value="Tenor">Tenor</option>
+						<option value="Bass">Bass</option>
+					</select>
+					<select name="subSection${theCount.count}" id="subSection${item.memberId}">
+						<option value=1>1</option>
+						<option value=2>2</option>
+					</select>
+				</td>
+				<td>
+					<select name="status${theCount.count}" id="status${item.memberId}">
+						<option value="Active">Active</option>
+						<option value="Resting">Resting</option>
+						<option value="Parental Leave">Parental leave</option>
+						<option value="Dropped Out (EC)">Dropped Out (EC)</option>
+						<option value="Dropped Out">Dropped Out</option>
+						<option value="Inactive">Inactive</option>
+					</select>
+				</td>
+			</tr>
+			<c:set var="finalCount" value="${theCount.count}" />
+			</c:forEach>
+			<tr>
+				<td>&nbsp;<input type="hidden" name="finalCount" value="${finalCount}"></td>
+				<td colspan=2><input type="submit" value="submit"></td>
+			</tr>
+		</table>
+		</form>
+	</c:if>
   </div>
 </div>
 </body>

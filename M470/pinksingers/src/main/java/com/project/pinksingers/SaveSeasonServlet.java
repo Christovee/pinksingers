@@ -1,6 +1,7 @@
 package com.project.pinksingers;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,30 +10,38 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.googlecode.objectify.ObjectifyService;
+import com.googlecode.objectify.VoidWork;
 
 @SuppressWarnings("serial")
 public class SaveSeasonServlet extends HttpServlet {
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-	Season season;
+
+		//Get parameters from form. 
+		String seasonName = req.getParameter("seasonName");
+		String concertTitle = req.getParameter("concertTitle");
+		String seasonStart = req.getParameter("seasonStart");
+		String seasonEnd = req.getParameter("seasonEnd");
+		boolean currentSeason = Boolean.valueOf(req.getParameter("currentSeason"));	
+		
+		//if currentSeason is true, make sure all other seasons are set to false first. 
+		if(currentSeason)
+		{
+			Season.deleteCurrentSeason();
+		}
 	
-	String seasonName = req.getParameter("seasonName");
-	String concertTitle = req.getParameter("concertTitle");
-	String seasonStart = req.getParameter("seasonStart");
-	String seasonEnd = req.getParameter("seasonEnd");
 	
+		Season season = new Season(seasonName, concertTitle, seasonStart, seasonEnd, currentSeason);
 	
-	season = new Season(seasonName, concertTitle, seasonStart, seasonEnd);
+		ObjectifyService.ofy().save().entity(season).now();
 	
-	ObjectifyService.ofy().save().entity(season).now();
+		Long seasonId = season.getSeasonId();
 	
-	Long seasonId = season.getSeasonId();
-	
-	req.setAttribute("seasonId", seasonId);
-	req.setAttribute("status", "saved");
-	RequestDispatcher rd = getServletContext().getRequestDispatcher("/loadSeason");
-	rd.forward(req, resp); 
+		req.setAttribute("seasonId", seasonId);
+		req.setAttribute("status", "saved");
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/loadSeason");
+		rd.forward(req, resp); 
 	}
 
 }

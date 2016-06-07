@@ -1,4 +1,13 @@
-<!-- Indices written at Mon, 30 May 2016 15:12:24 PDT -->
+<!-- Indices written at Tue, 7 Jun 2016 18:15:21 BST -->
 
-<datastore-indexes/>
+<datastore-indexes>
 
+    <!-- Used 2 times in query history -->
+    <datastore-index kind="Member" ancestor="false" source="auto">
+        <property name="status" direction="asc"/>
+        <property name="section" direction="asc"/>
+        <property name="subSection" direction="asc"/>
+        <property name="firstName" direction="asc"/>
+    </datastore-index>
+
+</datastore-indexes>

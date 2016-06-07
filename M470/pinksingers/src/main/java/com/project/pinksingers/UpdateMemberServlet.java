@@ -31,6 +31,7 @@ public class UpdateMemberServlet extends HttpServlet {
 		  final String subSection = req.getParameter("subSection");
 		  final String adminLevel = req.getParameter("adminLevel");
 		  final String email = req.getParameter("email");
+		  final String status = req.getParameter("status");
 		  
 		  ObjectifyService.ofy().transact(new VoidWork() {
 			    public void vrun() {
@@ -42,6 +43,7 @@ public class UpdateMemberServlet extends HttpServlet {
 			    	member.setSubSection(subSection);
 			    	member.setAdminLevel(adminLevel);
 			   		member.setEmail(email);
+			   		member.setStatus(status);
 			    	
 			    	ObjectifyService.ofy().save().entity(member);
 			    }

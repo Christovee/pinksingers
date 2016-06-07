@@ -22,12 +22,19 @@
   		<th>Season Name</th>
   		<th>Concert Title</th>
   		<th>Dates</th>
+  		<th><th>
  	</tr>
   	<c:forEach var="item" items="${seasonList}">
   		<tr>
 			<td><a href="loadSeason?seasonId=${item.seasonId}">${item.seasonName}</a></td>
 			<td><a href="loadSeason?seasonId=${item.seasonId}">${item.concertTitle}</a></td>
 			<td><a href="loadSeason?seasonId=${item.seasonId}">${item.seasonStart} - ${item.seasonEnd}</a></td>
+			<c:if test="${item.currentSeason}">
+				<td><div class="dot" style="background: green"></div></td>
+			</c:if>
+			<c:if test="${not item.currentSeason}">
+				<td><div class="dot" style="background: white"></div></td>
+			</c:if>
 	</c:forEach>
   	</table>
   </div>
