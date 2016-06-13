@@ -171,4 +171,35 @@ public static void deleteCurrentSeason()
 	}); 
 }
 
+// Static method to return previous Ids chronologically to passed seasonId. 
+public static ArrayList<Long> getPreviousSeasonIds(Long seasonId)
+{
+	List<Season> seasonList  = ObjectifyService.ofy().load().type(Season.class).order("-seasonStart").list();
+	ArrayList<Long> prevSeasonIds = new ArrayList<>();
+	
+	//Flag set to true once seasonId is matched to seasonId in season list
+	boolean matchFlag = false;
+	
+	for(Season season: seasonList)
+	{
+		//If seasonId matches or has previously matched enter if statement. 
+		if(matchFlag || seasonId.equals(season.seasonId))
+		{
+			matchFlag = true;
+			//If seasonId has previous matched but doesn't currently match add to array. 
+			if(!seasonId.equals(season.seasonId))
+			{
+				prevSeasonIds.add(season.seasonId);
+			}
+		}
+	}
+	
+	//Add to zero value Long objects to ensure array isn't empty. 
+	prevSeasonIds.add(0L);
+	prevSeasonIds.add(0L);
+	
+	//return array of previous seasons (most recent first). 
+	return prevSeasonIds;
+}
+
 }

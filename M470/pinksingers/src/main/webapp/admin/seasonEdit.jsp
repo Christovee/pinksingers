@@ -34,6 +34,80 @@ $(document).ready(function() {
 		$("#status"+${item.memberId}).val('${item.seasonStatus}');
 	</c:forEach>
 	
+	<c:forEach var="member" items="${prevSeasonMembers0}">
+		var prevString = "";
+		if("${member.seasonStatus}" == "Active")
+		{
+			switch ("${member.seasonSection}") {
+            	case "Alto":  
+            		prevString += "A";
+                     break;
+            	case "Bass":
+            		prevString += "B";
+            		break;
+            	case "Soprano":
+            		prevString += "S";
+            		break;
+            	case "Tenor":
+            		prevString += "T";
+			}
+			prevString += String(${member.seasonSubSection});
+		}else{
+			switch ("${member.seasonStatus}") {
+				case "Resting":
+					prevString += "Re";
+					break;
+				case "Parental Leave":
+					prevString += "PL";
+					break;
+				case "Dropped Out":
+					prevString += "DO";
+					break;
+				case "Dropped Out (EC)":
+					prevString += "DE";	
+			}
+		}
+		$("#prevSeasons"+${member.memberId}).html($("#prevSeasons"+${member.memberId}).html()+" "+prevString);
+	</c:forEach>
+	
+	<c:forEach var="member" items="${prevSeasonMembers1}">
+	var prev1String = "";
+	if("${member.seasonStatus}" == "Active")
+	{
+		switch ("${member.seasonSection}") {
+        	case "Alto":  
+        		prev1String += "A";
+                 break;
+        	case "Bass":
+        		prev1String += "B";
+        		break;
+        	case "Soprano":
+        		prev1String += "S";
+        		break;
+        	case "Tenor":
+        		prev1String += "T";
+		}
+		prev1String += String(${member.seasonSubSection});
+	}else{
+		switch ("${member.seasonStatus}") {
+			case "Resting":
+				prev1String += "Re";
+				break;
+			case "Parental Leave":
+				prev1String += "PL";
+				break;
+			case "Dropped Out":
+				prev1String += "DO";
+				break;
+			case "Dropped Out (EC)":
+				prev1String += "DE";	
+		}
+	}
+	$("#prevSeasons"+${member.memberId}).html($("#prevSeasons"+${member.memberId}).html()+" "+prev1String);
+	</c:forEach>
+	
+	
+	
 	//Register handler to update the hidden field on seasonMembers form
 	$('#currentSeason').change(function() {
 		   if($(this).is(":checked")) {
@@ -119,6 +193,7 @@ $(document).ready(function() {
 				<th>Name</th>
 				<th>Section</th>
 				<th>Status</th>
+				<th>Prev</th>
 			</tr>
 			<c:forEach var="item" items="${memberList}" varStatus="theCount">
   			<tr>
@@ -149,6 +224,7 @@ $(document).ready(function() {
 						<option value="Inactive">Inactive</option>
 					</select>
 				</td>
+				<td id="prevSeasons${item.memberId}"></td>
 			</tr>
 			<c:set var="finalCount" value="${theCount.count}" />
 			</c:forEach>

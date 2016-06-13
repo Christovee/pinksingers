@@ -24,17 +24,18 @@
   		<th>Dates</th>
   		<th><th>
  	</tr>
-  	<c:forEach var="item" items="${seasonList}">
+  	<c:forEach var="season" items="${seasonList}">
   		<tr>
-			<td><a href="loadSeason?seasonId=${item.seasonId}">${item.seasonName}</a></td>
-			<td><a href="loadSeason?seasonId=${item.seasonId}">${item.concertTitle}</a></td>
-			<td><a href="loadSeason?seasonId=${item.seasonId}">${item.seasonStart} - ${item.seasonEnd}</a></td>
-			<c:if test="${item.currentSeason}">
-				<td><div class="dot" style="background: green"></div></td>
+  			<td><a href='loadSeason?seasonId=${season.seasonId}'>${season.seasonName}</a></td>
+			<td><a href='loadSeason?seasonId=${season.seasonId}'>${season.concertTitle}</a></td>
+			<td><a href='loadSeason?seasonId=${season.seasonId}'>${season.seasonStart} - ${season.seasonEnd}</a></td>
+			<c:if test="${season.currentSeason}">
+				<td><div class='dot' style='background: green'></div></td></tr>
 			</c:if>
-			<c:if test="${not item.currentSeason}">
-				<td><div class="dot" style="background: white"></div></td>
+			<c:if test="${not season.currentSeason}">
+				<td><div class='dot' style='background: white'></div></td></tr>
 			</c:if>
+		</tr>
 	</c:forEach>
   	</table>
   </div>

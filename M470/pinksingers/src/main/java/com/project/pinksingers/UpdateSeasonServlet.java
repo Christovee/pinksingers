@@ -1,6 +1,7 @@
 package com.project.pinksingers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -43,9 +44,15 @@ public class UpdateSeasonServlet extends HttpServlet {
 			    }
 			    }); 
 		  
+		  ArrayList<Long> previousSeasonIds = Season.getPreviousSeasonIds(seasonId);
+		  
+		  String prev0 = String.valueOf(previousSeasonIds.get(0));
+		  String prev1 = String.valueOf(previousSeasonIds.get(1));
+		  
 		  req.setAttribute("seasonId", seasonId);
 		  req.setAttribute("status", "updated");
-		  RequestDispatcher rd = getServletContext().getRequestDispatcher("/loadSeason");
+		  RequestDispatcher rd = getServletContext().getRequestDispatcher("/loadSeason?prev0="+prev0+"&prev1="+prev1);
+		  System.out.println("/loadSeason?prev0="+prev0+"&prev1="+prev1);
 		  rd.forward(req, resp); 
 	  }
 }
