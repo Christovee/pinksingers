@@ -1,8 +1,11 @@
 package com.project.pinksingers;
 
+import com.googlecode.objectify.Ref;
+import com.googlecode.objectify.annotation.Load;
+
 public class SeasonMember {
   
-	Long memberId;
+	@Load Ref<Member> member;
 	String seasonStatus;
 	String seasonSection;
 	String seasonSubSection;
@@ -12,9 +15,9 @@ public class SeasonMember {
 	  
   }
   
-  public SeasonMember(Long memberId, String seasonStatus, String seasonSection, String seasonSubSection)
+  public SeasonMember(Member member, String seasonStatus, String seasonSection, String seasonSubSection)
   {
-	  this.memberId = memberId;
+	  this.setMember(member);
 	  this.seasonStatus = seasonStatus;
 	  this.seasonSection = seasonSection;
 	  this.seasonSubSection = seasonSubSection;
@@ -23,16 +26,18 @@ public class SeasonMember {
 /**
  * @return the memberId
  */
-public Long getMemberId() {
-	return memberId;
+public Member getMember() {
+	
+	return member.getValue();
 }
 
 /**
  * @param memberId the memberId to set
  */
-public void setMemberId(Long memberId) {
-	this.memberId = memberId;
+public void setMember(Member m) {
+	member = Ref.create(m);
 }
+
 
 /**
  * @return the seasonStatus

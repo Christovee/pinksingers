@@ -28,10 +28,10 @@ $(document).ready(function() {
 	}
 	
 	<c:forEach var="item" items="${seasonMembers}">
-		$("#"+${item.memberId}).css('background', 'green');
-		$("#section"+${item.memberId}).val('${item.seasonSection}');
-		$("#subSection"+${item.memberId}).val('${item.seasonSubSection}');
-		$("#status"+${item.memberId}).val('${item.seasonStatus}');
+		$("#"+${item.member.memberId}).css('background', 'green');
+		$("#section"+${item.member.memberId}).val('${item.seasonSection}');
+		$("#subSection"+${item.member.memberId}).val('${item.seasonSubSection}');
+		$("#status"+${item.member.memberId}).val('${item.seasonStatus}');
 	</c:forEach>
 	
 	<c:forEach var="member" items="${prevSeasonMembers0}">
@@ -67,7 +67,7 @@ $(document).ready(function() {
 					prevString += "DE";	
 			}
 		}
-		$("#prevSeasons"+${member.memberId}).html($("#prevSeasons"+${member.memberId}).html()+" "+prevString);
+		$("#prevSeasons"+${member.member.memberId}).html($("#prevSeasons"+${member.member.memberId}).html()+" "+prevString);
 	</c:forEach>
 	
 	<c:forEach var="member" items="${prevSeasonMembers1}">
@@ -103,10 +103,8 @@ $(document).ready(function() {
 				prev1String += "DE";	
 		}
 	}
-	$("#prevSeasons"+${member.memberId}).html($("#prevSeasons"+${member.memberId}).html()+" "+prev1String);
+	$("#prevSeasons"+${member.member.memberId}).html($("#prevSeasons"+${member.member.memberId}).html()+" "+prev1String);
 	</c:forEach>
-	
-	
 	
 	//Register handler to update the hidden field on seasonMembers form
 	$('#currentSeason').change(function() {
@@ -117,8 +115,20 @@ $(document).ready(function() {
 		   $("#isCurrentSeason").val("false");
 	});
 	
-	
+	//Hide the seasonMembers table when the page loads. 
+	$("#seasonMembers").hide();
+	$("#rehearsals").hide();
 });
+
+function toggleSeasonMembers()
+{
+	$("#seasonMembers").toggle();
+}
+
+function toggleRehearsals()
+{
+	$("#rehearsals").toggle();
+}
 
 </script>
 </head>
@@ -181,8 +191,10 @@ $(document).ready(function() {
 	</form>
 	</table>
 	<c:if test="${not empty season.seasonId}">
+		<button type="button" onclick="toggleSeasonMembers()">View/Hide Members</button>
+		<button type="button" onclick="toggleRehearsals()">View/Hide Rehearsals</button>
 		<form action="/updateSeasonMembers" method="post" id="seasonMemberForm" name="seasonMemberForm">
-		<table>
+		<table id="seasonMembers">
 			<tr>
 				<th colspan=4>Season Member Details</th>
 				<input type="hidden" name="seasonId" value="${season.seasonId}">
@@ -234,6 +246,24 @@ $(document).ready(function() {
 			</tr>
 		</table>
 		</form>
+		<table id="rehearsals">
+			<tr>
+				<th colspan=4>Rehearsals</th>
+			</tr>
+			<tr>
+				<th>Name</th>
+				<th>Date</th>
+			</tr>
+			<c:forEach var="rehearsal" items="${rehearsals}">
+				<tr>
+					<td><a href="loadRehearsal?rehearsalId=${rehearsal.rehearsalId}&seasonId=${season.seasonId}">${rehearsal.rehearsalName}</a></td>
+					<td><a href="loadRehearsal?rehearsalId=${rehearsal.rehearsalId}&seasonId=${season.seasonId}">${rehearsal.rehearsalStart}</a></td>
+				</tr>
+			</c:forEach>
+			<tr>
+				<td colspan=2><a href="loadRehearsal?seasonId=${season.seasonId}">Add Rehearsal</a></td>
+			</tr>
+		</table>
 	</c:if>
   </div>
 </div>

@@ -1,6 +1,7 @@
 package com.project.pinksingers;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -8,10 +9,12 @@ import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
 
 import com.googlecode.objectify.ObjectifyService;
+import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.VoidWork;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
+import com.googlecode.objectify.annotation.Load;
 
 @Entity
 public class Season {
@@ -22,6 +25,7 @@ public class Season {
   @Index private DateTime seasonEnd;
   @Index private boolean currentSeason;
   private ArrayList<SeasonMember> seasonMembers = new ArrayList<>();
+  @Load private ArrayList<Ref<Rehearsal>> rehearsals = new ArrayList<>();
   
 
 /**
@@ -137,6 +141,38 @@ public void setCurrentSeason(boolean currentSeason) {
 }
 
 
+
+/**
+ * @return the rehearsal
+ */
+public ArrayList<Rehearsal> getRehearsals() {
+	ArrayList<Rehearsal> rehearsals = new ArrayList<>();
+	Iterator <Ref<Rehearsal>> it = this.rehearsals.iterator();
+	
+	while(it.hasNext())
+	{
+		rehearsals.add(it.next().getValue());
+	}
+	return rehearsals;
+}
+
+/**
+ * @param rehearsal the rehearsal to set
+ */
+public void setRehearsals(ArrayList<Rehearsal> rehearsals) {
+	Iterator<Rehearsal> it = rehearsals.iterator();
+	
+	while(it.hasNext())
+	{
+		this.addRehearsal(it.next());
+	}
+}
+
+//Converts a rehearsal to a reference and add it to the array of rehearsals. 
+public void addRehearsal(Rehearsal rehearsal)
+{
+	this.rehearsals.add(Ref.create(rehearsal));
+}
 
 private String convertDate(DateTime dateTime)
 {

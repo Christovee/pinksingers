@@ -32,6 +32,22 @@
 	<servlet-class>com.project.pinksingers.UpdateSeasonServlet</servlet-class>
 </servlet>
 <servlet>
+	<servlet-name>saveRehearsal</servlet-name>
+	<servlet-class>com.project.pinksingers.SaveRehearsalServlet</servlet-class>
+</servlet>
+<servlet>
+	<servlet-name>loadRehearsal</servlet-name>
+	<servlet-class>com.project.pinksingers.LoadRehearsalServlet</servlet-class>
+</servlet>
+<servlet>
+	<servlet-name>updateRehearsal</servlet-name>
+	<servlet-class>com.project.pinksingers.UpdateRehearsalServlet</servlet-class>
+</servlet>
+<servlet>
+	<servlet-name>saveRegister</servlet-name>
+	<servlet-class>com.project.pinksingers.SaveRegisterServlet</servlet-class>
+</servlet>
+<servlet>
 	<servlet-name>updateSeasonMembers</servlet-name>
 	<servlet-class>com.project.pinksingers.UpdateSeasonMembersServlet</servlet-class>
 </servlet>
@@ -90,6 +106,22 @@
 <servlet-mapping>
      <servlet-name>updateSeason</servlet-name>
      <url-pattern>/updateSeason</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+     <servlet-name>saveRehearsal</servlet-name>
+     <url-pattern>/saveRehearsal</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+     <servlet-name>loadRehearsal</servlet-name>
+     <url-pattern>/loadRehearsal</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+     <servlet-name>updateRehearsal</servlet-name>
+     <url-pattern>/updateRehearsal</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+     <servlet-name>saveRegister</servlet-name>
+     <url-pattern>/saveRegister</url-pattern>
 </servlet-mapping>
 <servlet-mapping>
      <servlet-name>updateSeasonMembers</servlet-name>

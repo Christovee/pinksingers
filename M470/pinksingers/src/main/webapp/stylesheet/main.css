@@ -110,3 +110,7 @@ html {
 	height: 10px;
 	border-radius: 50%;
 }
+
+#key {
+	font-size: 10px;
+}

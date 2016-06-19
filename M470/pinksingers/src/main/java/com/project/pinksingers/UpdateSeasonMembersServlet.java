@@ -21,18 +21,21 @@ public class UpdateSeasonMembersServlet extends HttpServlet {
 		  
 		  ArrayList<SeasonMember> seasonMembers = new ArrayList<>();
 		  Long memberId;
+		  Member member;
 		  String status;
 		  String section;
 		  String subSection;
 		  boolean currentSeason = Boolean.valueOf(req.getParameter("isCurrentSeason"));
 		  
+		  
 		  for(int i = 1; i <= count; i++)
 		  {
 			  memberId = Long.valueOf(req.getParameter("memberId"+i));
+			  member = ObjectifyService.ofy().load().type(Member.class).id(memberId).now();
 			  status = req.getParameter("status"+i);
 			  section = req.getParameter("section"+i);
 			  subSection = req.getParameter("subSection"+i);
-			  seasonMembers.add(new SeasonMember(memberId, status, section, subSection));
+			  seasonMembers.add(new SeasonMember(member, status, section, subSection));
 			  if(currentSeason)
 			  {
 				  updateMember(memberId, status, section, subSection);

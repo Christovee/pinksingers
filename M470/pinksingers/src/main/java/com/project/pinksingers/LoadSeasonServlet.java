@@ -54,10 +54,13 @@ public class LoadSeasonServlet extends HttpServlet {
 		req.setAttribute("season", season);
 		ArrayList<SeasonMember> seasonMembers = season.getSeasonMembers();
 		req.setAttribute("seasonMembers", seasonMembers);
+		ArrayList<Rehearsal> rehearsals = season.getRehearsals();
+		Collections.sort(rehearsals);
+		req.setAttribute("rehearsals", rehearsals);
+		
 		
 		//Get previous season Ids
 		ArrayList<Long> prevSeasonIds = Season.getPreviousSeasonIds(seasonId);
-		System.out.println(prevSeasonIds.toString());
 		
 		//Get last season Member list and set attribute. 
 		req.setAttribute("prevSeasonMembers0", getSeasonMembers(prevSeasonIds.get(0)));
