@@ -184,6 +184,7 @@ private DateTime convertDate(String dateTimeString)
 {
 	DateTimeFormatter format = ISODateTimeFormat.date();
 	DateTime dateTime = new DateTime();
+	dateTimeString = dateTimeString.replace("/", "-");
 	dateTime = format.parseDateTime(dateTimeString);
 	return dateTime;
 }

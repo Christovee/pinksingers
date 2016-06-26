@@ -10,7 +10,9 @@
 <head>
 <link type="text/css" rel="stylesheet" href="../stylesheet/main.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="../scripts/modernizr.js"></script>
 <script>
 $(document).ready(function() {
 	<c:forEach var="item" items="${memberList}">
@@ -115,9 +117,28 @@ $(document).ready(function() {
 		   $("#isCurrentSeason").val("false");
 	});
 	
+	
 	//Hide the seasonMembers table when the page loads. 
 	$("#seasonMembers").hide();
 	$("#rehearsals").hide();
+	
+	//Check for HTML5 input=date compatibility. If not, use javascript validation
+	if(!Modernizr.inputtypes.date)
+	{
+		$('#seasonForm').validate({
+			rules: {
+				seasonName: "required",
+			    seasonStart: {required: true, dateISO: true},
+				seasonEnd: {required: true, dateISO: true}
+			  },
+			messages: {
+				seasonStart: "Must be in format yyyy-mm-dd",
+				seasonEnd: "Must be in format yyyy-mm-dd"
+			}
+		});	
+	}
+	
+	
 });
 
 function toggleSeasonMembers()
@@ -159,7 +180,7 @@ function toggleRehearsals()
 		</tr>
 		<tr>
 			<td><label>Season Name</label></td>
-			<td><input type="text" id="seasonName" name="seasonName" value="${season.seasonName}"></td>
+			<td><input type="text" id="seasonName" name="seasonName" value="${season.seasonName}" required></td>
 		</tr>
 		<tr>
 			<td><label>Concert Title</label></td>
@@ -167,11 +188,11 @@ function toggleRehearsals()
 		</tr>
 		<tr>
 			<td><label>Start Date</label></td>
-			<td><input type="date" id="seasonStart" name="seasonStart" value="${season.seasonStart}"></td>
+			<td><input type="date" id="seasonStart" name="seasonStart"  value="${season.seasonStart}" required></td>
 		</tr>
 		<tr>
 			<td><label>End Date</label></td>
-			<td><input type="date" id="seasonEnd" name="seasonEnd" value="${season.seasonEnd}"></td>
+			<td><input type="date" id="seasonEnd" name="seasonEnd" value="${season.seasonEnd}" required></td>
 		</tr>
 		<tr>
 			<td><label>Current Season?</label></td>
