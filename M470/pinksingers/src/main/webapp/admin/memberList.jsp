@@ -130,7 +130,7 @@
 		request.execute(function(resp) {
 
 	        var html = "<button class='member'>Member</button>"
-			$('.'+section+'[name="'+memberEmail+'"]').html(html); 	
+			$('.'+section+'[id="'+memberEmail+'"]').html(html); 	
 	    }); 			
  	}
 	
@@ -144,7 +144,7 @@
 		request.execute(function(resp) {
 
 	        var html = "<button class='removed'>Removed</button>"
-			$('[name="'+section+memberEmail+'"]').html(html); 	
+			$('[id="'+section+memberEmail+'"]').html(html); 	
 	    }); 	
 		
 	}
@@ -156,13 +156,13 @@
 			if(domainGroup.indexOf(serverGroup[i]) != -1)
 			{
 				var html = "<button class='member'>Member</button>";
-				$('.'+section+'[name="'+serverGroup[i]+'"]').html(html);
+				$('.'+section+'[id="'+serverGroup[i]+'"]').html(html);
 				var index = domainGroup.indexOf(serverGroup[i]);
 				domainGroup.splice(index, 1);
 			}
 			else{
 				var html = "<button class='add' onclick='addUser(&quot;"+serverGroup[i]+"&quot;,&quot;"+groupEmail+"&quot;,&quot;"+section+"&quot;)'>Add</button>";
-				$('.'+section+'[name="'+serverGroup[i]+'"]').html(html);
+				$('.'+section+'[id="'+serverGroup[i]+'"]').html(html);
 			}
 		}	
 		outputExtraMembers(section, domainGroup, groupEmail);
@@ -173,15 +173,13 @@
 		if(domainGroup.length > 0)
 		{
 			var html = $("#groups").html() + "<tr><th colspan='2'>Group:"+groupEmail+"</th></tr>";
-			console.log(html);
 			for(var i = 0; i < domainGroup.length; i++)
 			{
 				html = html + "<tr><td>"+domainGroup[i]+"</td>";
-				html = html + "<td name='"+section+domainGroup[i]+"'>";
+				html = html + "<td id='"+section+domainGroup[i]+"'>";
 				html = html + "<button class='add' onclick='deleteUser(&quot;"+section+"&quot;,&quot;"+domainGroup[i]+"&quot;,&quot;"+groupEmail+"&quot;)'>Remove</button></td></tr>";
 			}
 			$("#groups").html(html);
-			console.log(html);
 		}
 	}
     	   
@@ -218,8 +216,8 @@
   			<tr>
     			<td>${item.firstName}&nbsp;${item.lastName}</td>
     			<td>${item.section}&nbsp;${item.subSection}</td>
-    			<td class="FullChoir" name='${item.email}'></td>
-    			<td class="${item.section}" name='${item.email}'></td>
+    			<td class="FullChoir" id='${item.email}'></td>
+    			<td class="${item.section}" id='${item.email}'></td>
 			</tr>
 		</c:forEach>
 		</table>
