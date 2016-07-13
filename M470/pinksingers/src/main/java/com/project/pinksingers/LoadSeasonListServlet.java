@@ -17,7 +17,7 @@ public class LoadSeasonListServlet extends HttpServlet {
 	  public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		
 		//Retreive list of seasons in ascending order by start date. 
-		List<Season> seasonList = ObjectifyService.ofy().load().type(Season.class).order("-seasonStart").list();
+		List<Season> seasonList = ObjectifyService.ofy().load().type(Season.class).order("-start").list();
 	
 		req.setAttribute("seasonList", seasonList);
 		

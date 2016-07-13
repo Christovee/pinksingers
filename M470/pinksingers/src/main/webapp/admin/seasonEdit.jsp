@@ -163,7 +163,7 @@ function toggleRehearsals()
   </div>
   <div class="col-9">
   <c:choose>
-		<c:when test="${empty season.seasonId}">
+		<c:when test="${empty season.id}">
 			<c:set var="formAction" value="saveSeason"/>
 		</c:when>
 		<c:otherwise>
@@ -173,14 +173,14 @@ function toggleRehearsals()
 	<form action="/${formAction}" method="post" id="seasonForm" name="seasonForm">
 		<c:if test="${status == 'updated'}">Changes have been saved<br/></c:if>
 		<c:if test="${status == 'saved'}">Season has been added<br/></c:if>
-		<input type="hidden" name="seasonId" value="${season.seasonId}">
+		<input type="hidden" name="seasonId" value="${season.id}">
 		<table>
 		<tr>
 			<th colspan=2>Season Details</th>
 		</tr>
 		<tr>
 			<td><label>Season Name</label></td>
-			<td><input type="text" id="seasonName" name="seasonName" value="${season.seasonName}" required></td>
+			<td><input type="text" id="seasonName" name="seasonName" value="${season.name}" required></td>
 		</tr>
 		<tr>
 			<td><label>Concert Title</label></td>
@@ -188,11 +188,11 @@ function toggleRehearsals()
 		</tr>
 		<tr>
 			<td><label>Start Date</label></td>
-			<td><input type="date" id="seasonStart" name="seasonStart"  value="${season.seasonStart}" required></td>
+			<td><input type="date" id="seasonStart" name="seasonStart"  value="${season.start}" required></td>
 		</tr>
 		<tr>
 			<td><label>End Date</label></td>
-			<td><input type="date" id="seasonEnd" name="seasonEnd" value="${season.seasonEnd}" required></td>
+			<td><input type="date" id="seasonEnd" name="seasonEnd" value="${season.end}" required></td>
 		</tr>
 		<tr>
 			<td><label>Current Season?</label></td>
@@ -201,7 +201,7 @@ function toggleRehearsals()
 		<tr>
 			<td>&nbsp;</td>
 			<c:choose>
-			<c:when test="${empty season.seasonId}">
+			<c:when test="${empty season.id}">
 				<td><input type="submit" value="Add season"></td>
 			</c:when>
 			<c:otherwise>
@@ -211,14 +211,14 @@ function toggleRehearsals()
 		</tr>
 	</form>
 	</table>
-	<c:if test="${not empty season.seasonId}">
+	<c:if test="${not empty season.id}">
 		<button type="button" onclick="toggleSeasonMembers()">View/Hide Members</button>
 		<button type="button" onclick="toggleRehearsals()">View/Hide Rehearsals</button>
 		<form action="/updateSeasonMembers" method="post" id="seasonMemberForm" name="seasonMemberForm">
 		<table id="seasonMembers">
 			<tr>
 				<th colspan=4>Season Member Details</th>
-				<input type="hidden" name="seasonId" value="${season.seasonId}">
+				<input type="hidden" name="seasonId" value="${season.id}">
 				<input type="hidden" name="isCurrentSeason" id="isCurrentSeason">
 			</tr>
 			<tr>
@@ -277,12 +277,12 @@ function toggleRehearsals()
 			</tr>
 			<c:forEach var="rehearsal" items="${rehearsals}">
 				<tr>
-					<td><a href="loadRehearsal?rehearsalId=${rehearsal.rehearsalId}&seasonId=${season.seasonId}">${rehearsal.rehearsalName}</a></td>
-					<td><a href="loadRehearsal?rehearsalId=${rehearsal.rehearsalId}&seasonId=${season.seasonId}">${rehearsal.rehearsalStart}</a></td>
+					<td><a href="loadRehearsal?rehearsalId=${rehearsal.id}&seasonId=${season.id}">${rehearsal.name}</a></td>
+					<td><a href="loadRehearsal?rehearsalId=${rehearsal.id}&seasonId=${season.id}">${rehearsal.start}</a></td>
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan=2><a href="loadRehearsal?seasonId=${season.seasonId}">Add Rehearsal</a></td>
+				<td colspan=2><a href="loadRehearsal?seasonId=${season.id}">Add Rehearsal</a></td>
 			</tr>
 		</table>
 	</c:if>

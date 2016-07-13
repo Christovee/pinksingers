@@ -26,9 +26,9 @@
  	</tr>
   	<c:forEach var="season" items="${seasonList}">
   		<tr>
-  			<td><a href='loadSeason?seasonId=${season.seasonId}'>${season.seasonName}</a></td>
-			<td><a href='loadSeason?seasonId=${season.seasonId}'>${season.concertTitle}</a></td>
-			<td><a href='loadSeason?seasonId=${season.seasonId}'>${season.seasonStart} - ${season.seasonEnd}</a></td>
+  			<td><a href='loadSeason?seasonId=${season.id}'>${season.name}</a></td>
+			<td><a href='loadSeason?seasonId=${season.id}'>${season.concertTitle}</a></td>
+			<td><a href='loadSeason?seasonId=${season.id}'>${season.start} - ${season.end}</a></td>
 			<c:if test="${season.currentSeason}">
 				<td><div class='dot' style='background: green'></div></td></tr>
 			</c:if>

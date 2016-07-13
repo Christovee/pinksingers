@@ -36,7 +36,7 @@ public class SaveSeasonServlet extends HttpServlet {
 	
 		ObjectifyService.ofy().save().entity(season).now();
 	
-		Long seasonId = season.getSeasonId();
+		Long seasonId = season.getId();
 	
 		req.setAttribute("seasonId", seasonId);
 		req.setAttribute("status", "saved");

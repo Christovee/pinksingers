@@ -31,7 +31,7 @@ public class SaveRehearsalServlet extends HttpServlet {
 	
 		ObjectifyService.ofy().save().entity(rehearsal).now();
 		
-		Long rehearsalId = rehearsal.getRehearsalId();
+		Long rehearsalId = rehearsal.getId();
 		
 		ObjectifyService.ofy().transact(new VoidWork() {
 		    public void vrun() {

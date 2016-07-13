@@ -34,10 +34,10 @@ public class UpdateSeasonServlet extends HttpServlet {
 			    public void vrun() {
 			    	Season season = ObjectifyService.ofy().load().type(Season.class).id(seasonId).now();
 			    	
-			    	season.setSeasonName(seasonName);
+			    	season.setName(seasonName);
 			    	season.setConcertTitle(concertTitle);
-			    	season.setSeasonStart(seasonStart);
-			    	season.setSeasonEnd(seasonEnd);
+			    	season.setStart(seasonStart);
+			    	season.setEnd(seasonEnd);
 			    	season.setCurrentSeason(currentSeason);
 			    	
 			    	ObjectifyService.ofy().save().entity(season);

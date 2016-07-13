@@ -1,7 +1,6 @@
 package com.project.pinksingers;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,9 +28,9 @@ public class UpdateRehearsalServlet extends HttpServlet {
 			    public void vrun() {
 			    	Rehearsal rehearsal = ObjectifyService.ofy().load().type(Rehearsal.class).id(rehearsalId).now();
 			    	
-			    	rehearsal.setRehearsalName(rehearsalName);
-			    	rehearsal.setRehearsalStart(rehearsalStart);
-			    	rehearsal.setRehearsalEnd(rehearsalEnd);
+			    	rehearsal.setName(rehearsalName);
+			    	rehearsal.setStart(rehearsalStart);
+			    	rehearsal.setEnd(rehearsalEnd);
 			    	rehearsal.setLocation(location);
 			    	rehearsal.setAttendanceRequired(attendanceRequired);
 			    	

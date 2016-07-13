@@ -23,7 +23,7 @@ $(document).ready(function() {
 
 function gotoRegister()
 {
-	window.location.replace("loadRehearsal?rehearsalId="+${rehearsal.rehearsalId}+"&seasonId="+${season.seasonId}+"&register=true");
+	window.location.replace("loadRehearsal?rehearsalId="+${rehearsal.id}+"&seasonId="+${season.id}+"&register=true");
 }
 
 </script>
@@ -38,7 +38,7 @@ function gotoRegister()
   </div>
   <div class="col-9">
   <c:choose>
-		<c:when test="${empty rehearsal.rehearsalId}">
+		<c:when test="${empty rehearsal.id}">
 			<c:set var="formAction" value="saveRehearsal"/>
 		</c:when>
 		<c:otherwise>
@@ -47,29 +47,29 @@ function gotoRegister()
 	</c:choose>
 	<form action="/${formAction}" method="post" id="rehearsalForm" name="rehearsalForm">
 		<c:if test="${status == 'updated'}">Changes have been saved<br/></c:if>
-		<c:if test="${status == 'saved'}">Season has been added<br/></c:if>
-		<input type="hidden" name="rehearsalId" value="${rehearsal.rehearsalId}">
+		<c:if test="${status == 'saved'}">Rehearsal has been added<br/></c:if>
+		<input type="hidden" name="rehearsalId" value="${rehearsal.id}">
 		<table>
 		<tr>
 			<th colspan=2>Rehearsal Details</th>
 		</tr>
 		<tr>
 			<td><label>Season</label></td>
-			<td><a href='loadSeason?seasonId=${season.seasonId}'>${season.seasonName}</a>
-				<input type="hidden" name="seasonId" value="${season.seasonId}">
+			<td><a href='loadSeason?seasonId=${season.id}'>${season.name}</a>
+				<input type="hidden" name="seasonId" value="${season.id}">
 			</td>
 		</tr>
 		<tr>
 			<td><label>Rehearsal Name</label></td>
-			<td><input type="text" id="rehearsalName" name="rehearsalName" value="${rehearsal.rehearsalName}"></td>
+			<td><input type="text" id="rehearsalName" name="rehearsalName" value="${rehearsal.name}"></td>
 		</tr>
 		<tr>
 			<td><label>Start Date</label></td>
-			<td><input type="datetime-local" id="rehearsalStart" name="rehearsalStart" value="${rehearsal.rehearsalStart}"></td>
+			<td><input type="datetime-local" id="rehearsalStart" name="rehearsalStart" value="${rehearsal.start}"></td>
 		</tr>
 		<tr>
 			<td><label>End Date</label></td>
-			<td><input type="datetime-local" id="rehearsalEnd" name="rehearsalEnd" value="${rehearsal.rehearsalEnd}"></td>
+			<td><input type="datetime-local" id="rehearsalEnd" name="rehearsalEnd" value="${rehearsal.end}"></td>
 		</tr>
 		<tr>
 			<td><label>Location</label></td>
@@ -82,7 +82,7 @@ function gotoRegister()
 		<tr>
 			<td>&nbsp;</td>
 			<c:choose>
-			<c:when test="${empty rehearsal.rehearsalId}">
+			<c:when test="${empty rehearsal.id}">
 				<td><input type="submit" value="Add rehearsal"></td>
 			</c:when>
 			<c:otherwise>

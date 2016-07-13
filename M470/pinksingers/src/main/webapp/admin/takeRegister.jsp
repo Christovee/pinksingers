@@ -94,9 +94,9 @@ function toggleKey()
   </c:forEach>
   <tr>
   	<td>
-  		<input type="hidden" name="rehearsalId" value="${rehearsal.rehearsalId}">
+  		<input type="hidden" name="rehearsalId" value="${rehearsal.id}">
   		<input type="hidden" name="finalCount" value="${finalCount}">
-  		<input type="hidden" name="seasonId" value="${season.seasonId}"> 
+  		<input type="hidden" name="seasonId" value="${season.id}"> 
   	</td>
   	<td colspan=6><input type="submit" value="Save Register"></td>
   </table>

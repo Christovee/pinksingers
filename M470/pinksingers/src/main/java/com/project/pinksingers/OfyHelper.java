@@ -18,6 +18,7 @@ public class OfyHelper implements ServletContextListener {
 	ObjectifyService.factory().getTranslators().add(new UTCReadableInstantDateTranslatorFactory());
     ObjectifyService.register(Member.class);
     ObjectifyService.register(Season.class);
+    ObjectifyService.register(Event.class);
     ObjectifyService.register(Rehearsal.class);
     
   }
