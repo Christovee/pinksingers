@@ -9,6 +9,7 @@
 <html>
 <head>
 <link type="text/css" rel="stylesheet" href="../stylesheet/main.css"/>
+<meta name=viewport content="width=device-width, initial-scale=1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script>
@@ -68,6 +69,14 @@ function toggleKey()
   </div>
   <form action="saveRegister" method="post" name="register">
   <table>
+  <tr>
+  	<th>Season</th>
+  	<td colspan=6><a href='loadSeason?seasonId=${season.id}'>${season.name}</a></td>
+  </tr>
+  <tr>
+  	<th>Rehearsal</th>
+  	<td colspan=6><a href='loadRehearsal?rehearsalId=${rehearsal.id}&seasonId=${season.id}'>${rehearsal.name}</a></td>
+  </tr>
   <tr>
   	<th><label>Name</label></th>
   	<th><label>Section</label></th>

@@ -57,9 +57,9 @@ public class LoadMemberServlet extends HttpServlet {
 		String photoKey = member.getPhoto();
 		BlobKey blobKey;
 		
-		/*if(photoKey == null)
+		if(photoKey == null)
 		{
-			blobKey = new BlobKey("I2zEtg9aZtUTRNnsRHDi9Q");
+			blobKey = new BlobKey("ag5zfnBpbmstc2luZ2Vyc3ITCxIGTWVtYmVyGICAgID4woQKDA");
 		}else{
 			blobKey = new BlobKey(photoKey);
 		}
@@ -72,7 +72,7 @@ public class LoadMemberServlet extends HttpServlet {
 		
 		String servingUrl = imagesService.getServingUrl(options);
 		
-		req.setAttribute("servingUrl", servingUrl);*/
+		req.setAttribute("servingUrl", servingUrl);
 		
 		String forwardingPage = "";
 		

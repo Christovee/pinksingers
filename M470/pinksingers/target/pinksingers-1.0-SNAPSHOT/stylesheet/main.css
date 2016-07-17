@@ -16,10 +16,12 @@ body {
 }
 
 /* For mobile phones: */
-[class*="col-"] {
-    width: 100%;
+@media only screen and (max-device-width: 767px) {
+	[class*="col-"] {
+    	width: 100%;
+	}
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-device-width: 768px) {
 /* For desktop: */
 	.col-1 {width: 8.33%;}
 	.col-2 {width: 16.66%;}
