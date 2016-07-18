@@ -10,6 +10,7 @@
 <head>
 <link type="text/css" rel="stylesheet" href="stylesheet/main.css"/>
 <meta name=viewport content="width=device-width, initial-scale=1">
+
 </head>
 <body>
 <div class="header"></div>
@@ -28,7 +29,8 @@
   		<tr>
   			<td><a href='loadEvent?eventId=${event.id}'>${event.name}</a></td>
 			<td><a href='loadEvent?eventId=${event.id}'>${event.location}</a></td>
-			<td><a href='loadEvent?eventId=${event.id}'>${event.start} - ${event.end}</a></td>
+			<td><a href='loadEvent?eventId=${event.id}'><fmt:formatDate type="date" 
+            value="${event.javaStart}" /></a></td>
 		</tr>
 	</c:forEach>
   	</table>

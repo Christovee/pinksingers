@@ -14,9 +14,9 @@
 <meta name=viewport content="width=device-width, initial-scale=1">
 <script>
 $(document).ready(function() {
-	
-	// May be able to delete this. 
-	
+	<c:forEach var="item" items="${event.register}">
+		$("#status"+${item.member.memberId}).val('${item.attendance}');
+	</c:forEach>
 });
 
 </script>
@@ -44,7 +44,7 @@ $(document).ready(function() {
 		<input type="hidden" name="eventId" value="${event.id}">
 		<table>
 		<tr>
-			<th colspan=2>Even Details</th>
+			<th colspan=2>Event Details</th>
 		</tr>
 		<tr>
 			<td><label>Event Name</label></td>
@@ -77,6 +77,40 @@ $(document).ready(function() {
 		</tr>
 	</form>
 	</table>
+	<c:if test="${not empty event.id}">
+	<form action="/updateEventRegister" method="post" id="eventRegisterForm" name="eventRegisterForm">
+		<table>
+			<tr>
+				<th colspan=3>Event Availability</th>
+				<input type="hidden" name="eventId" value="${event.id}">
+			</tr>
+			<tr>
+				<th>Name</th>
+				<th>Section</th>
+				<th>Status</th>
+			</tr>
+			<c:forEach var="item" items="${memberList}" varStatus="theCount">
+  			<tr>
+				<td>${item.firstName} ${item.lastName}</td>
+				<input type=hidden name="memberId${theCount.count}" value="${item.memberId}">
+				<td>${item.section} ${item.subSection}</td>
+				<td>
+					<select name="status${theCount.count}" id="status${item.memberId}">
+						<option value="Available">Available</option>
+						<option value="Not Available">Unvailable</option>
+						<option value="Not Responded" selected>Not Responded</option>
+					</select>
+				</td>
+			</tr>
+			<c:set var="finalCount" value="${theCount.count}" />
+			</c:forEach>
+			<tr>
+				<td>&nbsp;<input type="hidden" name="finalCount" value="${finalCount}"></td>
+				<td colspan=2><input type="submit" value="Update"></td>
+			</tr>
+		</table>
+		</form>
+	</c:if>
   </div>
 </div>
 </body>

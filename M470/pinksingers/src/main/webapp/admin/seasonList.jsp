@@ -29,7 +29,9 @@
   		<tr>
   			<td><a href='loadSeason?seasonId=${season.id}'>${season.name}</a></td>
 			<td><a href='loadSeason?seasonId=${season.id}'>${season.concertTitle}</a></td>
-			<td><a href='loadSeason?seasonId=${season.id}'>${season.start} - ${season.end}</a></td>
+			<td><a href='loadSeason?seasonId=${season.id}'><fmt:formatDate type="date" 
+            value="${season.javaStart}" /> - <fmt:formatDate type="date" 
+            value="${season.javaEnd}" /></td>
 			<c:if test="${season.currentSeason}">
 				<td><div class='dot' style='background: green'></div></td></tr>
 			</c:if>

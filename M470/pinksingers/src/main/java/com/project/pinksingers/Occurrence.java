@@ -1,5 +1,7 @@
 package com.project.pinksingers;
 
+import java.util.Date;
+
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
@@ -53,6 +55,10 @@ public String getStart() {
 	return convertDate(start);
 }
 
+public Date getJavaStart() {
+	return start.toDate();
+}
+
 public void setStart(String start) {
 	this.start = convertDate(start);
 }
@@ -60,6 +66,11 @@ public void setStart(String start) {
 public String getEnd() {
 	return convertDate(end);
 }
+
+public Date getJavaEnd(){
+	return end.toDate();
+}
+
 
 public void setEnd(String end) {
 	this.end = convertDate(end);

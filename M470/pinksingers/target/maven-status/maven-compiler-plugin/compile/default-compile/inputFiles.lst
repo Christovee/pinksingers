@@ -15,13 +15,14 @@
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/LoadMemberListServlet.java
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/UpdateSeasonMembersServlet.java
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/LogoutServlet.java
+/Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/UpdateEventRegisterServlet.java
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/LoadSeasonServlet.java
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/UpdateSeasonServlet.java
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/LoadEventListServlet.java
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/LoadEventServlet.java
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/SeasonMember.java
-/Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/Occurrence.java
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/LoadMemberServlet.java
+/Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/Occurrence.java
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/SaveMemberServlet.java
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/Season.java
 /Users/cviveash/git/pinksingers/M470/pinksingers/src/main/java/com/project/pinksingers/LoadRehearsalServlet.java

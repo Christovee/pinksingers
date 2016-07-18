@@ -279,7 +279,8 @@ function toggleRehearsals()
 			<c:forEach var="rehearsal" items="${rehearsals}">
 				<tr>
 					<td><a href="loadRehearsal?rehearsalId=${rehearsal.id}&seasonId=${season.id}">${rehearsal.name}</a></td>
-					<td><a href="loadRehearsal?rehearsalId=${rehearsal.id}&seasonId=${season.id}">${rehearsal.start}</a></td>
+					<td><a href="loadRehearsal?rehearsalId=${rehearsal.id}&seasonId=${season.id}"><fmt:formatDate type="date" 
+            value="${rehearsal.javaStart}" /></a></td>
 				</tr>
 			</c:forEach>
 			<tr>

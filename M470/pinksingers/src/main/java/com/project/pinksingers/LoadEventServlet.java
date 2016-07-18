@@ -1,6 +1,8 @@
 package com.project.pinksingers;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -48,6 +50,10 @@ public class LoadEventServlet extends HttpServlet {
 		Event event = ObjectifyService.ofy().load().type(Event.class).id(eventId).now();
 		
 		req.setAttribute("event", event);
+		
+		List<Member> memberList = ObjectifyService.ofy().load().type(Member.class).filter("status !=", "Inactive").order("status").order("section").order("subSection").order("firstName").list();
+		Collections.sort(memberList);
+		req.setAttribute("memberList", memberList);
 		
 		RequestDispatcher rd = req.getRequestDispatcher("admin/eventEdit.jsp");
 		rd.forward(req, resp); 

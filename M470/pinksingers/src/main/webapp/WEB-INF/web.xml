@@ -60,6 +60,10 @@
 	<servlet-class>com.project.pinksingers.SaveRegisterServlet</servlet-class>
 </servlet>
 <servlet>
+	<servlet-name>updateEventRegister</servlet-name>
+	<servlet-class>com.project.pinksingers.UpdateEventRegisterServlet</servlet-class>
+</servlet>
+<servlet>
 	<servlet-name>updateSeasonMembers</servlet-name>
 	<servlet-class>com.project.pinksingers.UpdateSeasonMembersServlet</servlet-class>
 </servlet>
@@ -138,6 +142,10 @@
 <servlet-mapping>
      <servlet-name>updateEvent</servlet-name>
      <url-pattern>/updateEvent</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+     <servlet-name>updateEventRegister</servlet-name>
+     <url-pattern>/updateEventRegister</url-pattern>
 </servlet-mapping>
 <servlet-mapping>
      <servlet-name>saveRehearsal</servlet-name>
