@@ -13,23 +13,27 @@
 </head>
 <body>
 <div class="header"></div>
-<div class="row">
-  <div class="col-3 menu">
-  	<jsp:include page="menu.jsp" />
-  </div>
-  <div class="col-9">
-  	<table>
-  	<tr>
-  		<th>Name</th>
-  		<th>Section</th>
- 	</tr>
-  	<c:forEach var="item" items="${memberList}">
-  		<tr>
-			<td><a href="/loadMember?memberId=${item.memberId}">${item.firstName}&nbsp;${item.lastName}</a></td>
-			<td><a href="/loadMember?memberId=${item.memberId}">${item.section}&nbsp;${item.subSection}</a></td>
-	</c:forEach>
-  	</table>
-  </div>
-</div>
+	<div class="row">
+  		<div class="col-3 menu">
+  			<jsp:include page="menu.jsp" />
+  		</div>
+  		<div class="col-9">
+  			<div class="rTable"> 
+  				<div class="rTableRow"> 
+  					<div class="rTableHead">Name</div>
+  					<div class="rTableHead">Section</div>
+ 				</div>
+  				<c:forEach var="item" items="${memberList}">
+  				<div class="rTableRow"> 
+					<div class="rTableCell">
+						<a href="/loadMember?memberId=${item.memberId}">${item.firstName}&nbsp;${item.lastName}</a>
+					</div>
+					<div class="rTableCell">
+						<a href="/loadMember?memberId=${item.memberId}">${item.section}&nbsp;${item.subSection}</a>
+					</div>
+				</div>
+			</c:forEach>
+  		</div>
+	</div>
 </body>
 </html>

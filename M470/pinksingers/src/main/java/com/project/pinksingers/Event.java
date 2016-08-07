@@ -2,6 +2,9 @@ package com.project.pinksingers;
 
 import java.util.ArrayList;
 
+import org.joda.time.DateTime;
+
+import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.annotation.Entity;
 
 @Entity
@@ -46,6 +49,14 @@ public ArrayList<Register> getRegister() {
  */
 public void setRegister(ArrayList<Register> register) {
 	this.register = register;
+}
+
+public static Event getNextEvent()
+{
+	Event event = ObjectifyService.ofy().load().type(Event.class).filter("start >=", DateTime.now()).first().now();
+	 
+	return event;
+	
 }
 
 @Override

@@ -25,7 +25,7 @@ public class LoadMemberServlet extends HttpServlet {
 		//Check if parameter is null isn't empty
 		if(req.getParameter("memberId") == null)
 		{
-			resp.sendRedirect("../index.jsp"); 
+			resp.sendRedirect("/loadIndex"); 
 		}else{
 			Long memberId = Long.valueOf(req.getParameter("memberId"));
 			doCode(req, resp, memberId);
@@ -59,7 +59,8 @@ public class LoadMemberServlet extends HttpServlet {
 		
 		if(photoKey == null)
 		{
-			blobKey = new BlobKey("ag5zfnBpbmstc2luZ2Vyc3ITCxIGTWVtYmVyGICAgID4woQKDA");
+			blobKey = new BlobKey("AMIfv97jILlDUkY8svDEV5_0pINgz4TCJRunSopVxZDYUJnt4n_SQriPtsn-d4g6HACpbUHMMgrOALMnPooxCUwrOwmsZ-Awe-REx_tH-Uv8pltmrJPiL_OBFfCgQDy4qIIwxcWvfJPcXvYy4fXpuObbNjWxA-MROA");
+			//blobKey = new BlobKey("KVnHKT-XIWf2VYxHWCW_Yw");
 		}else{
 			blobKey = new BlobKey(photoKey);
 		}
@@ -105,10 +106,14 @@ public class LoadMemberServlet extends HttpServlet {
 			if(req.getAttribute("status") == null)
 			{
 				forwardingPage = "/memberView.jsp";
+			}else if(req.getAttribute("status").equals("photo")){
+	    		forwardingPage = "/memberView.jsp";
+				
 			}else{
 				forwardingPage = "/admin/memberEdit.jsp";
 			}
 		}		
+		
 		RequestDispatcher rd = req.getRequestDispatcher(forwardingPage);
 		rd.forward(req, resp); 
 	}

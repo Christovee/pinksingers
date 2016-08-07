@@ -16,12 +16,16 @@ body {
 }
 
 /* For mobile phones: */
-@media only screen and (max-device-width: 767px) {
+@media only screen and (max-width: 767px) {
 	[class*="col-"] {
     	width: 100%;
 	}
+	
+	.rTableCell {display: table-cell;padding: 3px 10px; width:100px} 
+	.rTableHead {display: table-cell;padding: 3px 10px; width:100px; font-weight: bold;}
+	
 }
-@media only screen and (min-device-width: 768px) {
+@media only screen and (min-width: 768px) {
 /* For desktop: */
 	.col-1 {width: 8.33%;}
 	.col-2 {width: 16.66%;}
@@ -35,12 +39,15 @@ body {
 	.col-10 {width: 83.33%;}
 	.col-11 {width: 91.66%;}
 	.col-12 {width: 100%;}
+	
+	.rTableCell {display: table-cell;padding: 3px 10px; width:150px} 
+	.rTableHead {display: table-cell;padding: 3px 10px; width:150px; font-weight: bold;}
 }
 
 [class*="col-"] {
     float: left;
     padding: 0;
-    border: 1px solid #000000;
+    border: 0px solid #000000;
 }
 
 .row:after {
@@ -72,38 +79,38 @@ html {
 }
 
 .member {
-    background-color: #4CAF50; 
-    border: none;
-    color: white;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    background: #009900;
+    border: 0px;
+    color: #fff;
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+    font: 16px Arial, sans-serif;
     cursor: not-allowed;
-    width: 100px;
 }
 
 .add {
-    background-color: #e7e7e7; 
-    border: none;
-    color: black;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    background: #e6e6e6;
+    border: 0px;
+    color: #000000;
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    width: 100px;
+    font: 16px Arial, sans-serif;
 }
 
 .removed {
-    background-color: #f44336; 
-    border: none;
-    color: white;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    background: #cc3300;
+    border: 0px;
+    color: #fff;
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+    font: 16px Arial, sans-serif;
     cursor: not-allowed;
-    width: 100px;
 }
 
 .dot {
@@ -113,6 +120,25 @@ html {
 	border-radius: 50%;
 }
 
+.dotCell {
+	width: 15px !important;
+}
+
+.buttons {
+	display: inline;
+	width: 50px;
+}
+
 #key {
 	font-size: 10px;
 }
+
+.title {padding: 3px 10px; font-weight: bold;}
+
+.error {padding: 3px 10px; color: #ff0cb2;}
+
+.rTable {display: table;} 
+.rTableRow {display: table-row;} 
+.rTableHeading {display: table-header-group;} 
+.rTableFoot {display: table-footer-group;} 
+.rTableBody {display: table-row-group; }

@@ -10,7 +10,6 @@
 <head>
 <link type="text/css" rel="stylesheet" href="stylesheet/main.css"/>
 <meta name=viewport content="width=device-width, initial-scale=1">
-
 </head>
 <body>
 <div class="header"></div>
@@ -19,21 +18,21 @@
   	<jsp:include page="../menu.jsp" />
   </div>
   <div class="col-9">
-  	<table>
-  	<tr>
-  		<th>Event Name</th>
-  		<th>Location</th>
-  		<th>Dates</th>
-  	</tr>
+  	<div class="rTableRow"> 
+  	<div class="rTableRow"> 
+  		<div class="rTableHead">Event Name</div>
+  		<div class="rTableHead">Location</div>
+  		<div class="rTableHead">Dates</div>
+  	</div>
   	<c:forEach var="event" items="${eventList}">
-  		<tr>
-  			<td><a href='loadEvent?eventId=${event.id}'>${event.name}</a></td>
-			<td><a href='loadEvent?eventId=${event.id}'>${event.location}</a></td>
-			<td><a href='loadEvent?eventId=${event.id}'><fmt:formatDate type="date" 
-            value="${event.javaStart}" /></a></td>
-		</tr>
+  		<div class="rTableRow"> 
+  			<div class="rTableCell"><a href='loadEvent?eventId=${event.id}'>${event.name}</a></div>
+			<div class="rTableCell"><a href='loadEvent?eventId=${event.id}'>${event.location}</a></div>
+			<div class="rTableCell"><a href='loadEvent?eventId=${event.id}'><fmt:formatDate type="date" 
+            value="${event.javaStart}" /></a></div>
+		</div>
 	</c:forEach>
-  	</table>
+  	</div>
   </div>
 </div>
 </body>

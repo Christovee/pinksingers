@@ -171,122 +171,120 @@ function toggleRehearsals()
 			<c:set var="formAction" value="updateSeason"/>
 		</c:otherwise>
 	</c:choose>
-	<form action="/${formAction}" method="post" id="seasonForm" name="seasonForm">
-		<c:if test="${status == 'updated'}">Changes have been saved<br/></c:if>
-		<c:if test="${status == 'saved'}">Season has been added<br/></c:if>
-		<input type="hidden" name="seasonId" value="${season.id}">
-		<table>
-		<tr>
-			<th colspan=2>Season Details</th>
-		</tr>
-		<tr>
-			<td><label>Season Name</label></td>
-			<td><input type="text" id="seasonName" name="seasonName" value="${season.name}" required></td>
-		</tr>
-		<tr>
-			<td><label>Concert Title</label></td>
-			<td><input type="text" id="concertTitle" name="concertTitle" value="${season.concertTitle}"></td>
-		</tr>
-		<tr>
-			<td><label>Start Date</label></td>
-			<td><input type="date" id="seasonStart" name="seasonStart"  value="${season.start}" required></td>
-		</tr>
-		<tr>
-			<td><label>End Date</label></td>
-			<td><input type="date" id="seasonEnd" name="seasonEnd" value="${season.end}" required></td>
-		</tr>
-		<tr>
-			<td><label>Current Season?</label></td>
-			<td><input type="checkbox" id="currentSeason" name="currentSeason" value="true"></td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
+	<c:if test="${status == 'updated'}"><div class="error">Changes have been saved</div></c:if>
+	<c:if test="${status == 'saved'}"><div class="error">Season has been added</div></c:if>
+	<div class="title">Season Details</div>
+	<form action="/${formAction}" method="post" id="seasonForm" name="seasonForm" class="rTable">
+	<input type="hidden" name="seasonId" value="${season.id}">
+		<div class="rTableRow"> 
+			<div class="rTableCell"><label>Season Name</label></div>
+			<div class="rTableCell"><input type="text" id="seasonName" name="seasonName" value="${season.name}" required></div>
+		</div>
+		<div class="rTableRow">
+			<div class="rTableCell"><label>Concert Title</label></div>
+			<div class="rTableCell"><input type="text" id="concertTitle" name="concertTitle" value="${season.concertTitle}"></div>
+		</div>
+		<div class="rTableRow">
+			<div class="rTableCell"><label>Start Date</label></div>
+			<div class="rTableCell"><input type="date" id="seasonStart" name="seasonStart"  value="${season.start}" required></div>
+		</div>
+		<div class="rTableRow">
+			<div class="rTableCell"><label>End Date</label></div>
+			<div class="rTableCell"><input type="date" id="seasonEnd" name="seasonEnd" value="${season.end}" required></div>
+		</div>
+		<div class="rTableRow">
+			<div class="rTableCell"><label>Current Season?</label></div>
+			<div class="rTableCell"><input type="checkbox" id="currentSeason" name="currentSeason" value="true"></div>
+		</div>
+		<div class="rTableRow">
+			<div class="rTableCell">&nbsp;</div>
 			<c:choose>
-			<c:when test="${empty season.id}">
-				<td><input type="submit" value="Add season"></td>
-			</c:when>
-			<c:otherwise>
-				<td><input type="submit" value="Update season"></td>
-			</c:otherwise>
+				<c:when test="${empty season.id}">
+					<div class="rTableCell"><input type="submit" value="Add season"></div>
+				</c:when>
+				<c:otherwise>
+					<div class="rTableCell"><input type="submit" value="Update season"></div>
+				</c:otherwise>
 			</c:choose>	
-		</tr>
+		</div>
 	</form>
-	</table>
 	<c:if test="${not empty season.id}">
 		<button type="button" onclick="toggleSeasonMembers()">View/Hide Members</button>
 		<button type="button" onclick="toggleRehearsals()">View/Hide Rehearsals</button>
-		<form action="/updateSeasonMembers" method="post" id="seasonMemberForm" name="seasonMemberForm">
-		<table id="seasonMembers">
-			<tr>
-				<th colspan=4>Season Member Details</th>
+		<div id="seasonMembers">
+			<div class="title">Season Member Details</div>
+			<form action="/updateSeasonMembers" method="post" id="seasonMemberForm" name="seasonMemberForm" class="rTable">
 				<input type="hidden" name="seasonId" value="${season.id}">
 				<input type="hidden" name="isCurrentSeason" id="isCurrentSeason">
-			</tr>
-			<tr>
-				<th></th>
-				<th>Name</th>
-				<th>Section</th>
-				<th>Status</th>
-				<th>Prev</th>
-			</tr>
-			<c:forEach var="item" items="${memberList}" varStatus="theCount">
-  			<tr>
-  				<td>
-					<div id="${item.memberId}" class="dot" style="background: red"></div>
-				</td>
-				<td>${item.firstName} ${item.lastName}</td>
-				<input type=hidden name="memberId${theCount.count}" value="${item.memberId}">
-				<td>
-					<select name="section${theCount.count}" id="section${item.memberId}">
-						<option value="Soprano">Soprano</option>
-						<option value="Alto">Alto</option>
-						<option value="Tenor">Tenor</option>
-						<option value="Bass">Bass</option>
-					</select>
-					<select name="subSection${theCount.count}" id="subSection${item.memberId}">
-						<option value=1>1</option>
-						<option value=2>2</option>
-					</select>
-				</td>
-				<td>
-					<select name="status${theCount.count}" id="status${item.memberId}">
-						<option value="Active">Active</option>
-						<option value="Resting">Resting</option>
-						<option value="Parental Leave">Parental leave</option>
-						<option value="Dropped Out (EC)">Dropped Out (EC)</option>
-						<option value="Dropped Out">Dropped Out</option>
-						<option value="Inactive">Inactive</option>
-					</select>
-				</td>
-				<td id="prevSeasons${item.memberId}"></td>
-			</tr>
-			<c:set var="finalCount" value="${theCount.count}" />
-			</c:forEach>
-			<tr>
-				<td>&nbsp;<input type="hidden" name="finalCount" value="${finalCount}"></td>
-				<td colspan=2><input type="submit" value="submit"></td>
-			</tr>
-		</table>
-		</form>
-		<table id="rehearsals">
-			<tr>
-				<th colspan=4>Rehearsals</th>
-			</tr>
-			<tr>
-				<th>Name</th>
-				<th>Date</th>
-			</tr>
-			<c:forEach var="rehearsal" items="${rehearsals}">
-				<tr>
-					<td><a href="loadRehearsal?rehearsalId=${rehearsal.id}&seasonId=${season.id}">${rehearsal.name}</a></td>
-					<td><a href="loadRehearsal?rehearsalId=${rehearsal.id}&seasonId=${season.id}"><fmt:formatDate type="date" 
-            value="${rehearsal.javaStart}" /></a></td>
-				</tr>
-			</c:forEach>
-			<tr>
-				<td colspan=2><a href="loadRehearsal?seasonId=${season.id}">Add Rehearsal</a></td>
-			</tr>
-		</table>
+				
+					<div class="rTableRow">
+						<div class="dotCell rTableHead"></div>
+						<div class="rTableHead">Name</div>
+						<div class="rTableHead">Section</div>
+						<div class="rTableHead">Status</div>
+						<div class="rTableHead">Prev</div>
+					</div>
+					<c:forEach var="item" items="${memberList}" varStatus="theCount">
+					<input type=hidden name="memberId${theCount.count}" value="${item.memberId}">
+  						<div class="rTableRow">
+  							<div class="dotCell rTableCell"><div id="${item.memberId}" class="dot" style="background: red"></div></div>
+							<div class="rTableCell">${item.firstName} ${item.lastName}</div>
+							<div class="rTableCell">
+								<select name="section${theCount.count}" id="section${item.memberId}">
+									<option value="Soprano">Soprano</option>
+									<option value="Alto">Alto</option>
+									<option value="Tenor">Tenor</option>
+									<option value="Bass">Bass</option>
+								</select>
+								<select name="subSection${theCount.count}" id="subSection${item.memberId}">
+									<option value=1>1</option>
+									<option value=2>2</option>
+								</select>
+							</div>
+							<div class="rTableCell">
+								<select name="status${theCount.count}" id="status${item.memberId}">
+									<option value="Active">Active</option>
+									<option value="Resting">Resting</option>
+									<option value="Parental Leave">Parental leave</option>
+									<option value="Dropped Out (EC)">Dropped Out (EC)</option>
+									<option value="Dropped Out">Dropped Out</option>
+									<option value="Inactive">Inactive</option>
+								</select>
+							</div>
+							<div class="rTableCell" id="prevSeasons${item.memberId}"></div>
+						</div>
+					<c:set var="finalCount" value="${theCount.count}" />
+					</c:forEach>
+					<input type="hidden" name="finalCount" value="${finalCount}">
+					<div class="rTableRow">
+						<div class="dotCell rTableCell"></div>
+						<div class="rTableCell"><input type="submit" value="submit"></div>
+					</div>
+				</form>
+		</div>	
+		<div id="rehearsals">
+			<div class="title">Rehearsals</div>
+		 	<div class="rTable">
+				<div class="rTableRow">
+					<div class="rTableHead">Name</div>
+					<div class="rTableHead">Date</div>
+				</div>
+				<c:forEach var="rehearsal" items="${rehearsals}">
+					<div class="rTableRow">
+						<div class="rTableCell"><a href="loadRehearsal?rehearsalId=${rehearsal.id}&seasonId=${season.id}">${rehearsal.name}</a></div>
+						<div class="rTableCell">
+							<a href="loadRehearsal?rehearsalId=${rehearsal.id}&seasonId=${season.id}">
+								<fmt:formatDate type="date" value="${rehearsal.javaStart}" />
+							</a>
+						</div>
+					</div>
+				</c:forEach>
+				<div class="rTableRow">
+					<div class="rTableCell"><a href="loadRehearsal?seasonId=${season.id}">Add Rehearsal</a></div>
+					<div></div>
+				</div>
+			</div>
+		</div>
 	</c:if>
   </div>
 </div>

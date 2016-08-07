@@ -114,6 +114,14 @@ public void addRehearsal(Rehearsal rehearsal)
 	this.rehearsals.add(Ref.create(rehearsal));
 }
 
+public static Season getCurrentSeason()
+{
+	 Season season = ObjectifyService.ofy().load().type(Season.class).filter("currentSeason", true).first().now();
+	 
+	 return season;
+	
+}
+
 // Static method which removes all current season flags in the datastore. 
 public static void deleteCurrentSeason()
 {

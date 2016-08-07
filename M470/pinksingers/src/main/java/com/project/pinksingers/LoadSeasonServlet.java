@@ -24,7 +24,7 @@ public class LoadSeasonServlet extends HttpServlet {
 		//Check if parameter is null isn't empty
 		if(req.getParameter("seasonId") == null)
 		{
-			resp.sendRedirect("../index.jsp"); 
+			resp.sendRedirect("/loadIndex"); 
 		}else{
 			Long seasonId = Long.valueOf(req.getParameter("seasonId"));
 			doCode(req, resp, seasonId);

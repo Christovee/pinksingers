@@ -57,7 +57,7 @@ public class LoginServlet extends HttpServlet {
 			    session.setAttribute("sessionAccess", access);
 			    session.setAttribute("sessionFirstName", firstName);
 			    session.setAttribute("sessionMemberId", memberId);
-				rd = getServletContext().getRequestDispatcher("/index.jsp");
+				rd = getServletContext().getRequestDispatcher("/loadIndex");
 			}else{
 				req.setAttribute("status", "password");
 				rd = getServletContext().getRequestDispatcher("/login.jsp");

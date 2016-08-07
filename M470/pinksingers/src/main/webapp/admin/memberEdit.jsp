@@ -38,79 +38,78 @@ $(document).ready(function() {
 			<c:set var="formAction" value="updateMember"/>
 		</c:otherwise>
 	</c:choose>
-	<form action="/${formAction}" method="post" id="memberForm" name="memberForm">
-		<c:if test="${status == 'updated'}">Changes have been saved<br/></c:if>
-		<c:if test="${status == 'saved'}">Member has been added<br/></c:if>
-		<input type="hidden" name="memberId" value="${member.memberId}">
-		<table>
-		<tr>
-			<td><label>First Name</label></td>
-			<td><input type="text" id="firstName" name="firstName" value="${member.firstName}"></td>
-		</tr>
-		<tr>
-			<td><label>Last Name</label></td>
-			<td><input type="text" id="lastName" name="lastName" value="${member.lastName}"></td>
-		</tr>
-		<tr>
-			<td><label>Section</label></td>
-			<td>
+	<c:if test="${status == 'updated'}"><div class="error">Changes have been saved</div></c:if>
+	<c:if test="${status == 'saved'}"><div class="error">Member has been added</div></c:if>
+	<form action="/${formAction}" method="post" id="memberForm" name="memberForm" class="rTable">
+	<input type="hidden" name="memberId" value="${member.memberId}">
+		<div class="rTableRow"> 
+			<div class="rTableCell"><label>First Name</label></div>
+			<div class="rTableCell"><input type="text" id="firstName" name="firstName" value="${member.firstName}"></div>
+		</div>
+		<div class="rTableRow"> 
+			<div class="rTableCell"><label>Last Name</label></div>
+			<div class="rTableCell"><input type="text" id="lastName" name="lastName" value="${member.lastName}"></div>
+		</div>
+		<div class="rTableRow"> 
+			<div class="rTableCell"><label>Section</label></div>
+			<div class="rTableCell">
 				<select name="section" id="section">
 					<option value="Soprano">Soprano</option>
 					<option value="Alto">Alto</option>
 					<option value="Tenor">Tenor</option>
 					<option value="Bass">Bass</option>
 				</select>
-			</td>
-		</tr>
-		<tr>
-			<td><label>Sub Section</label></td>
-			<td>
+			</div>
+		</div>
+		<div class="rTableRow"> 
+			<div class="rTableCell"><label>Sub Section</label></div>
+			<div class="rTableCell">
 				<select name="subSection" id="subSection">
 					<option value=1>1</option>
 					<option value=2>2</option>
 				</select>
-			</td>
-		</tr>
-		<tr>
-			<td><label>Email</label></td>
-			<td><input type="text" id="email" name="email" value="${member.email}"></td>
-		</tr>
-		<tr>
-			<td><label>Access Level</label></td>
-			<td>
+			</div>
+		</div>
+		<div class="rTableRow"> 
+			<div class="rTableCell"><label>Email</label></div>
+			<div class="rTableCell"><input type="text" id="email" name="email" value="${member.email}"></div>
+		</div>
+		<div class="rTableRow"> 
+			<div class="rTableCell"><label>Access Level</label></div>
+			<div class="rTableCell">
 				<select name="adminLevel" id="adminLevel">
 					<option value="member">Member</option>
 					<option value="sectionLeader">Section Leader</option>
 					<option value="admin">Admin</option>
 				</select>
-			</td>
-		</tr>
-		<tr>
-			<td><label>Status</label></td>
-			<td>
+			</div>
+		</div>
+		<div class="rTableRow"> 
+			<div class="rTableCell"><label>Status</label></div>
+			<div class="rTableCell">
 				<select name="status" id="status">
 					<option value="Active">Active</option>
 					<option value="Inactive">Inactive</option>
 				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td><input type="submit"></td>
-		</tr>
+			</div>
+		</div>
+		<div class="rTableRow"> 
+			<div class="rTableCell">&nbsp;</div>
+			<div class="rTableCell"><input type="submit"></div>
+		</div>
 	</form>
 	<c:if test="${not empty member.memberId}">
-		<tr>
-			<td>&nbsp;</td>
-			<td>
-				<form action="/sendCreds" method="post" id="sendCreds" name="sendCreds">
-					<input type="hidden" name="memberId" value="${member.memberId}">
-					<input type="submit" value="Send Login Credentials">
-				</form>
-			</td>
-		</tr>
+		<div class="rTable"> 
+			<div class="rTableRow"> 
+				<div class="rTableCell">
+					<form action="/sendCreds" method="post" id="sendCreds" name="sendCreds">
+						<input type="hidden" name="memberId" value="${member.memberId}">
+						<input type="submit" value="Send Login Credentials">
+					</form>
+				</div>
+			</div>
+		</div>	
 	</c:if>
-	</table>
   </div>
 </div>
 </body>

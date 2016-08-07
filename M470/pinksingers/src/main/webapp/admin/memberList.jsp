@@ -86,14 +86,14 @@
 
      
 	function listUsers() {
-		listMembers("sopranos@viveash.net", sopranoEmails, "Soprano");
-    	listMembers("altos@viveash.net", altoEmails, "Alto");	
-    	listMembers("tenors@viveash.net", tenorEmails, "Tenor");
-    	listMembers("basses@viveash.net", bassEmails, "Bass");
-    	listMembers("fullchoir@viveash.net", allEmails, "FullChoir");
+		listMembers("sopranos@viveash.net", sopranoEmails, "Soprano", "S");
+    	listMembers("altos@viveash.net", altoEmails, "Alto", "S");	
+    	listMembers("tenors@viveash.net", tenorEmails, "Tenor", "S");
+    	listMembers("basses@viveash.net", bassEmails, "Bass", "S");
+    	listMembers("fullchoir@viveash.net", allEmails, "FullChoir", "C");
       	}
             
-	function listMembers(groupEmail, serverGroup, section) {
+	function listMembers(groupEmail, serverGroup, section, letter) {
     	
 		var domainGroup = [];
 		
@@ -115,11 +115,11 @@
                 	domainGroup.push(memberEmail);
             	}
          	}
-        	checkMembers(domainGroup, groupEmail, serverGroup, section);  	
+        	checkMembers(domainGroup, groupEmail, serverGroup, section, letter);  	
         });
 	}
 		
-	function addUser(memberEmail, groupEmail, section) {
+	function addUser(memberEmail, groupEmail, section, letter) {
 		
 		var member = {"email": memberEmail, "role":"MEMBER"};
 		
@@ -130,12 +130,12 @@
 	    			
 		request.execute(function(resp) {
 
-	        var html = "<button class='member'>Member</button>"
+	        var html = "<button class='member'>"+letter+"</button>"
 			$('.'+section+'[id="'+memberEmail+'"]').html(html); 	
 	    }); 			
  	}
 	
-	function deleteUser(section, memberEmail, groupEmail)
+	function deleteUser(section, memberEmail, groupEmail, letter)
 	{
 		var request = gapi.client.directory.members.delete({
 			'groupKey': groupEmail,
@@ -144,41 +144,41 @@
 	    			
 		request.execute(function(resp) {
 
-	        var html = "<button class='removed'>Removed</button>"
+	        var html = "<button class='removed'>"+letter+"</button>"
 			$('[id="'+section+memberEmail+'"]').html(html); 	
 	    }); 	
 		
 	}
             
-	function checkMembers(domainGroup, groupEmail, serverGroup, section)
+	function checkMembers(domainGroup, groupEmail, serverGroup, section, letter)
     {
 		for( var i =0; i < serverGroup.length; i++ )
     	{
 			if(domainGroup.indexOf(serverGroup[i]) != -1)
 			{
-				var html = "<button class='member'>Member</button>";
+				var html = "<button class='member'>"+letter+"</button>";
 				$('.'+section+'[id="'+serverGroup[i]+'"]').html(html);
 				var index = domainGroup.indexOf(serverGroup[i]);
 				domainGroup.splice(index, 1);
 			}
 			else{
-				var html = "<button class='add' onclick='addUser(&quot;"+serverGroup[i]+"&quot;,&quot;"+groupEmail+"&quot;,&quot;"+section+"&quot;)'>Add</button>";
+				var html = "<button class='add' onclick='addUser(&quot;"+serverGroup[i]+"&quot;,&quot;"+groupEmail+"&quot;,&quot;"+section+"&quot;,&quot;"+letter+"&quot;)'>"+letter+"</button>";
 				$('.'+section+'[id="'+serverGroup[i]+'"]').html(html);
 			}
 		}	
-		outputExtraMembers(section, domainGroup, groupEmail);
+		outputExtraMembers(section, domainGroup, groupEmail, letter);
 	}
 	
-	function outputExtraMembers(section, domainGroup, groupEmail)
+	function outputExtraMembers(section, domainGroup, groupEmail, letter)
 	{
 		if(domainGroup.length > 0)
 		{
-			var html = $("#groups").html() + "<tr><th colspan='2'>Group:"+groupEmail+"</th></tr>";
+			var html = $("#groups").html() + "<div class='rTableRow'><div class='rTableCell'>Group:"+groupEmail+"</div></div>";
 			for(var i = 0; i < domainGroup.length; i++)
 			{
-				html = html + "<tr><td>"+domainGroup[i]+"</td>";
-				html = html + "<td id='"+section+domainGroup[i]+"'>";
-				html = html + "<button class='add' onclick='deleteUser(&quot;"+section+"&quot;,&quot;"+domainGroup[i]+"&quot;,&quot;"+groupEmail+"&quot;)'>Remove</button></td></tr>";
+				html = html + "<div class='rTableRow'><div class='rTableCell'>"+domainGroup[i]+"</div>";
+				html = html + "<div class='rTableCell' id='"+section+domainGroup[i]+"'>";
+				html = html + "<button class='add' onclick='deleteUser(&quot;"+section+"&quot;,&quot;"+domainGroup[i]+"&quot;,&quot;"+groupEmail+"&quot;,&quot;"+letter+"&quot;)'>"+letter+"</button></div></div>";
 			}
 			$("#groups").html(html);
 		}
@@ -195,35 +195,32 @@
   </div>
   <div class="col-9">
   	<div id="authorize-div" style="display: none">
-    	<span>Authorize access to Directory API</span>
+    	<span>To use this feature you must authorise with a Pink Singers Admin Account</span>
       	<!--Button for the user to click to initiate auth sequence -->
 		<button id="authorize-button" onclick="handleAuthClick(event)">
-        	Authorize
+        	Authorise
       	</button>
     </div>
     <div id="output" style="display: none">
-  		<table>
-  		<tr>
-  			<th colspan=2>Member Info</th>
-  			<th colspan=2>Email Groups</th>
- 		</tr>
- 		<tr>
-  			<th>Name</th>
-  			<th>Section</th>
-  			<th>Choir</th>
-  			<th>Section</th>
- 		</tr>
-  		<c:forEach var="item" items="${memberList}">
-  			<tr>
-    			<td>${item.firstName}&nbsp;${item.lastName}</td>
-    			<td>${item.section}&nbsp;${item.subSection}</td>
-    			<td class="FullChoir" id='${item.email}'></td>
-    			<td class="${item.section}" id='${item.email}'></td>
-			</tr>
-		</c:forEach>
-		</table>
-		<table id="groups">
-  		</table>
+  		<div class="rTable"> 
+ 			<div class="rTableRow">
+  				<div class="rTableHead">Name</div>
+  				<div class="rTableHead">Section</div>
+  				<div class="rTableHead">Groups</div>
+ 			</div>
+  			<c:forEach var="item" items="${memberList}">
+  				<div class="rTableRow">
+    				<div class="rTableCell">${item.firstName}&nbsp;${item.lastName}</div>
+    				<div class="rTableCell">${item.section}&nbsp;${item.subSection}</div>
+    				<div class="rTableCell">
+    					<span class="FullChoir buttons"  id='${item.email}'></span>
+    					<span class="${item.section} buttons" id='${item.email}'></span>
+    				</div>
+				</div>
+			</c:forEach>
+		</div>
+		<div class="rTable" id="groups">
+  		</div>
   	</div>
   </div>
 </div>

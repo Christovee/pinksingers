@@ -3,7 +3,7 @@ package com.project.pinksingers;
 import java.io.IOException;
 
 import javax.servlet.http.*;
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import java.util.Properties;
 
@@ -65,7 +65,14 @@ public class SendCredentialsServlet extends HttpServlet {
 	        } catch (MessagingException e) {
 	            // ...
 	        } 
+	        
+	      req.setAttribute("memberId", memberId);
+	  	  req.setAttribute("status", "sent");
+	  	  RequestDispatcher rd = getServletContext().getRequestDispatcher("/loadMember");
+	  	  rd.forward(req, resp); 
 	
 	  }	
+	  
+	  
 
 }

@@ -22,7 +22,7 @@ public class LoadEventServlet extends HttpServlet {
 		//Check if parameter is null isn't empty
 		if(req.getParameter("eventId") == null)
 		{
-			resp.sendRedirect("../index.jsp"); 
+			resp.sendRedirect("/loadIndex"); 
 		}else{
 			Long eventId = Long.valueOf(req.getParameter("eventId"));
 			doCode(req, resp, eventId);

@@ -18,29 +18,32 @@
   	<jsp:include page="../menu.jsp" />
   </div>
   <div class="col-9">
-  	<table>
-  	<tr>
-  		<th>Season Name</th>
-  		<th>Concert Title</th>
-  		<th>Dates</th>
-  		<th><th>
- 	</tr>
-  	<c:forEach var="season" items="${seasonList}">
-  		<tr>
-  			<td><a href='loadSeason?seasonId=${season.id}'>${season.name}</a></td>
-			<td><a href='loadSeason?seasonId=${season.id}'>${season.concertTitle}</a></td>
-			<td><a href='loadSeason?seasonId=${season.id}'><fmt:formatDate type="date" 
-            value="${season.javaStart}" /> - <fmt:formatDate type="date" 
-            value="${season.javaEnd}" /></td>
-			<c:if test="${season.currentSeason}">
-				<td><div class='dot' style='background: green'></div></td></tr>
-			</c:if>
-			<c:if test="${not season.currentSeason}">
-				<td><div class='dot' style='background: white'></div></td></tr>
-			</c:if>
-		</tr>
-	</c:forEach>
-  	</table>
+  	<div class="rTable"> 
+  		<div class="rTableRow">
+  			<div class="rTableHead">Season Name</div>
+  			<div class="rTableHead">Concert Title</div>
+  			<div class="rTableHead">Dates</div>
+  			<div class="rTableHead"></div>
+ 		</div>
+  		<c:forEach var="season" items="${seasonList}">
+  			<div class="rTableRow">
+  				<div class="rTableCell"><a href='loadSeason?seasonId=${season.id}'>${season.name}</a></div>
+				<div class="rTableCell"><a href='loadSeason?seasonId=${season.id}'>${season.concertTitle}</a></div>
+				<div class="rTableCell">
+					<a href='loadSeason?seasonId=${season.id}'>
+						<fmt:formatDate type="date" value="${season.javaStart}" /> - 
+						<fmt:formatDate type="date" value="${season.javaEnd}" />
+					</a>
+				</div>
+				<c:if test="${season.currentSeason}">
+					<div class='rTableCell'><div class='dot' style='background: green'></div></div>
+				</c:if>
+				<c:if test="${not season.currentSeason}">
+					<div class='rTableCell'><div class='dot' style='background: white'></div></div>
+				</c:if>
+			</div>
+		</c:forEach>
+  	</div>
   </div>
 </div>
 </body>

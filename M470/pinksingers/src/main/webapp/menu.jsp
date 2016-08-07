@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <ul>
+	<li><a href="/loadIndex">Home</a></li>
 	<li><a href="/loadMemberList?action=view">View Member List</a></li>
 	<c:if test="${sessionAccess == 'admin'}">
 		<li><a href="/loadMemberList?action=edit">Sync Email Groups</a></li>

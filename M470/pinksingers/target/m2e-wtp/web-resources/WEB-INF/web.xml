@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
+    <welcome-file>loadIndex</welcome-file>
+</welcome-file-list>
+<servlet>
+    <servlet-name>loadIndex</servlet-name>
+    <servlet-class>com.project.pinksingers.LoadIndexServlet</servlet-class>
+</servlet>
 <servlet>
     <servlet-name>saveMember</servlet-name>
     <servlet-class>com.project.pinksingers.SaveMemberServlet</servlet-class>
@@ -80,6 +84,10 @@
 	<servlet-class>com.project.pinksingers.SendCredentialsServlet</servlet-class>
 </servlet>
 <servlet>
+	<servlet-name>sendApologies</servlet-name>
+	<servlet-class>com.project.pinksingers.SendApologiesServlet</servlet-class>
+</servlet>
+<servlet>
 	<servlet-name>login</servlet-name>
 	<servlet-class>com.project.pinksingers.LoginServlet</servlet-class>
 </servlet>
@@ -95,6 +103,10 @@
 	<servlet-name>loadGroups</servlet-name>
 	<servlet-class>com.project.pinksingers.LoadGroupsServlet</servlet-class>
 </servlet>
+<servlet-mapping>
+     <servlet-name>loadIndex</servlet-name>
+     <url-pattern>/loadIndex</url-pattern>
+</servlet-mapping>
 <servlet-mapping>
      <servlet-name>saveMember</servlet-name>
      <url-pattern>/saveMember</url-pattern>
@@ -168,6 +180,10 @@
      <url-pattern>/updateSeasonMembers</url-pattern>
 </servlet-mapping>
 <servlet-mapping>
+     <servlet-name>sendApologies</servlet-name>
+     <url-pattern>/sendApologies</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
      <servlet-name>sendCreds</servlet-name>
      <url-pattern>/sendCreds</url-pattern>
 </servlet-mapping>
@@ -204,12 +220,21 @@
 	<url-pattern>/*</url-pattern>
 </filter-mapping>
 <filter>
+	<filter-name>slFilter</filter-name>
+    <filter-class>com.project.pinksingers.SLFilter</filter-class>
+</filter>
+<filter-mapping>
+    <filter-name>slFilter</filter-name>
+	<url-pattern>/sl/*</url-pattern>
+</filter-mapping>
+<filter>
 	<filter-name>adminFilter</filter-name>
     <filter-class>com.project.pinksingers.AdminFilter</filter-class>
 </filter>
 <filter-mapping>
     <filter-name>adminFilter</filter-name>
 	<url-pattern>/admin/*</url-pattern>
+	<url-pattern>/sl/*</url-pattern>
 </filter-mapping>
 <listener>
   <listener-class>com.project.pinksingers.OfyHelper</listener-class>

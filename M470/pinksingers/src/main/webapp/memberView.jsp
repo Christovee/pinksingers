@@ -20,54 +20,53 @@
   	<jsp:include page="menu.jsp" />
   </div>
   <div class="col-9">
-	<table>
-	<tr>
-		<td><label>First Name</label></td>
-		<td>${member.firstName}</td>
-	</tr>
-	<tr>
-		<td><label>Last Name</label></td>
-		<td>${member.lastName}</td>
-	</tr>
-	<tr>
-		<td><label>Section</label></td>
-		<td>${member.section}&nbsp;${member.subSection}</td>
-	</tr>
-	<tr>
-		<td><label>Email</label></td>
-		<td>${member.email}</td>
-	</tr>
-	<tr>
-		<td><label>Fun Fact</label></td>
-		<td>${member.funFact}</td>
-	</tr>
-	<tr>
-		<td><label>Photo</label></td>
-		<td><img src="${servingUrl}" alt="profile photo"></td>
-	</tr>
+	<div class="rTable"> 
+		<div class="rTableRow"> 
+			<div class="rTableCell">First Name</div>
+			<div class="rTableCell">${member.firstName}</div>
+		</div>
+		<div class="rTableRow"> 
+			<div class="rTableCell">Last Name</div>
+			<div class="rTableCell">${member.lastName}</div>
+		</div>
+		<div class="rTableRow"> 
+			<div class="rTableCell">Section</div>
+			<div class="rTableCell">${member.section}&nbsp;${member.subSection}</div>
+		</div>
+		<div class="rTableRow"> 
+			<div class="rTableCell">Email</div>
+			<div class="rTableCell">${member.email}</div>
+		</div>
+		<div class="rTableRow"> 
+			<div class="rTableCell">Fun Fact</div>
+			<div class="rTableCell">${member.funFact}</div>
+		</div>
+		<div class="rTableRow"> 
+			<div class="rTableCell">Photo</div>
+			<div class="rTableCell"><img src="${servingUrl}" alt="profile photo"></div>
+		</div>
+	
+	</div>
 	<c:if test="${member.memberId == sessionMemberId}">
-		<form action="/loadMember" method="post">
-		<tr>
-			<td>
-				<input type="hidden" name="memberId" id="memberId" value="${member.memberId}">
-				<input type="hidden" name="action" id="action" value="editProfile">
-			</td>
-			<td><input type="submit" value="Edit Profile"></td>
-		</tr>
+		<form action="/loadMember" method="post" class="rTable">
+			<input type="hidden" name="memberId" id="memberId" value="${member.memberId}">
+			<input type="hidden" name="action" id="action" value="editProfile">
+			<div class="rTableRow"> 
+				<div class="rTableCell"><input type="submit" value="Edit Profile"></div>
+				<div class="rTableCell"></div>
+			</div>
 		</form>
 	</c:if>
 	<c:if test="${sessionAccess == 'admin'}">
-		<form action="/loadMember" method="post">
-		<tr>
-			<td>
-				<input type="hidden" name="memberId" id="memberId" value="${member.memberId}">
-				<input type="hidden" name="action" id="action" value="editMember">
-			</td>
-			<td><input type="submit" value="Edit Member"></td>
-		</tr>
+		<form action="/loadMember" method="post" class="rTable">
+			<input type="hidden" name="memberId" id="memberId" value="${member.memberId}">
+			<input type="hidden" name="action" id="action" value="editMember">
+			<div class="rTableRow"> 
+				<div class="rTableCell"><input type="submit" value="Edit Member"></div>
+				<div class="rTableCell"></div>
+			</div>
 		</form>
 	</c:if>
-	</table>
   </div>
 </div>
 </body>

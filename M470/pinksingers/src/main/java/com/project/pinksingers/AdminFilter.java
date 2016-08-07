@@ -31,7 +31,7 @@ public class AdminFilter implements Filter {
         if (isAdmin) {
             chain.doFilter(request, response);
         } else {
-    	   response.sendRedirect("/index.jsp");
+    	   response.sendRedirect("/loadIndex");
 		} 
     }
 
